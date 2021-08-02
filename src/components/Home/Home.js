@@ -34,29 +34,29 @@ const Home = () => {
         {/* Carousel section */}
         <div className="container my-3">
           <div id="carouselMain" className="carousel slide" data-bs-ride="carousel">
-              <div className="carousel-inner">
-                <div className="carousel-item active">
-                  <img src={c_1} alt="First Slide" className="d-block w-100 img-fluid"/>
-                </div>
-                <div className="carousel-item">
-                  <img src={c_2} alt="Second Slide" className="d-block w-100 img-fluid"/>
-                </div>
-                <div className="carousel-item">
-                  <img src={c_3} alt="Third Slide" className="d-block w-100 img-fluid"/>
-                </div>
-                <div className="carousel-item">
-                  <img src={c_4} alt="Fourth Slide" className="d-block w-100 img-fluid"/>
-                </div>
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <img src={c_1} alt="First Slide" className="d-block w-100 img-fluid" />
               </div>
+              <div className="carousel-item">
+                <img src={c_2} alt="Second Slide" className="d-block w-100 img-fluid" />
+              </div>
+              <div className="carousel-item">
+                <img src={c_3} alt="Third Slide" className="d-block w-100 img-fluid" />
+              </div>
+              <div className="carousel-item">
+                <img src={c_4} alt="Fourth Slide" className="d-block w-100 img-fluid" />
+              </div>
+            </div>
 
-              <button className="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Prev</span>
-              </button>
-              <button className="carousel-control-next" type="button" data-bs-target="#carouselMain" data-bs-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Next</span>
-              </button>
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
+              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Prev</span>
+            </button>
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselMain" data-bs-slide="next">
+              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
       </div>
@@ -101,21 +101,23 @@ const Home = () => {
           </div>
 
           <div className="col-sm">
-            <div className="row g-2">
-              {
-                product.product.map((product, key) => (
-                  <div key={key} className="col-sm-6">
-                    <div className="card" style={{ maxWidth: '18rem', maxHeight: '25rem' }}>
-                      {/* <img src={product.img_main} alt="" className="card-img-top img-fluid"/> */}
-                      <div className="card-body">
-                        <h5 className="card-title">{product.product_name}</h5>
-                        <p className="card-text">{product.product_description}</p>
-                        <p className="card-text text-muted">{`${product.currency}${product.price}`}</p>
+            <div className="container">
+              <div className="row align-sm-center justify-content-sm-center g-2">
+                {
+                  product.product.map((product, key) => (
+                    <div key={key} className="col-sm-6">
+                      <div className="card" style={{ maxWidth: '18rem', maxHeight: '25rem' }}>
+                        {/* <img src={product.img_main} alt="" className="card-img-top img-fluid"/> */}
+                        <div className="card-body">
+                          <h5 className="card-title">{product.product_name}</h5>
+                          <p className="card-text">{product.product_description}</p>
+                          <p className="card-text text-muted">{`${product.currency}${product.price}`}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))
-              }
+                  ))
+                }
+              </div>
             </div>
           </div>
 

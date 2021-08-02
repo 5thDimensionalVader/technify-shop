@@ -1,4 +1,3 @@
-import footerStyles from './footer.module.css';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
