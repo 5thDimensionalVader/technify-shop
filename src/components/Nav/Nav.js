@@ -30,7 +30,7 @@ const Nav = () => {
               <Link className="nav-link" to="/help">Help</Link>
             </li>
             <li className="nav-item ms-3 d-none d-md-inline">
-              <Link className="nav-link btn btn-primary btn-sm" to="/cart">Your Cart</Link>
+              <Link className="nav-link btn btn-primary btn-sm" to="/cart" style={{color:'white'}}>Your Cart</Link>
             </li>
           </ul>
 

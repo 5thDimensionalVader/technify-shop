@@ -1,12 +1,6 @@
 import homeStyles from './home.module.css';
-import iPhone_11 from '../../assets/img/iPhone_11_Pro.png';
-import iPhone_11_c from '../../assets/img/iPhone_11_Pro_c.jpg';
-import iPhone_XR from '../../assets/img/iPhone_XR_blue.png';
-import iPhone_XR_c from '../../assets/img/iPhone_XR_c.jpg';
-import S21_Ultra from '../../assets/img/S21_Ultra.png';
-import iPhone_XS from '../../assets/img/iPhone_XS.png';
+import { c_1, c_2, c_3, c_4, iPhone_11, iPhone_XR } from '../../assets';
 import { Link } from 'react-router-dom';
-import Carousel from 'react-bootstrap/Carousel';
 import product from '../../assets/data/data.js';
 
 
@@ -34,35 +28,40 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Featured Product Section */}
       <div className="container bg-light" style={{ borderTop: '1px solid #60606030', borderBottom: '1px solid #60606030' }}>
-        <span className="display-4 fw-lighter">Featured Products</span>
-        <div className="container my-2">
-          {/* Carousel section */}
-          {/* <Carousel>
-            <Carousel.Item>
-              <img
-                className="d-block w-100 img-fluid"
-                src={`${iPhone_XR_c}`}
-                alt="First slide"
-              />
-              <Carousel.Caption>
-                <h3>{product.product[0].product_name}</h3>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100 img-fluid"
-                src={`${iPhone_11_c}`}
-                alt="Third slide"
-              />
-              <Carousel.Caption>
-                <h3 className="mb-5">Third slide label</h3>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel> */}
+        <h4 className="display-4 fw-lighter my-4">Featured Products</h4>
+        {/* Carousel section */}
+        <div className="container my-3">
+          <div id="carouselMain" className="carousel slide" data-bs-ride="carousel">
+              <div className="carousel-inner">
+                <div className="carousel-item active">
+                  <img src={c_1} alt="First Slide" className="d-block w-100 img-fluid"/>
+                </div>
+                <div className="carousel-item">
+                  <img src={c_2} alt="Second Slide" className="d-block w-100 img-fluid"/>
+                </div>
+                <div className="carousel-item">
+                  <img src={c_3} alt="Third Slide" className="d-block w-100 img-fluid"/>
+                </div>
+                <div className="carousel-item">
+                  <img src={c_4} alt="Fourth Slide" className="d-block w-100 img-fluid"/>
+                </div>
+              </div>
+
+              <button className="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Prev</span>
+              </button>
+              <button className="carousel-control-next" type="button" data-bs-target="#carouselMain" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Next</span>
+              </button>
+          </div>
         </div>
       </div>
 
+      {/* Newsletter Section */}
       <div className="container bg-light py-5" style={{ borderBottom: '1px solid #60606030' }}>
         <div className="row justify-content-center g-4">
           <div className="col-sm-4 col-md-6 text-sm-center text-md-start">
@@ -106,7 +105,7 @@ const Home = () => {
               {
                 product.product.map((product, key) => (
                   <div key={key} className="col-sm-6">
-                    <div className="card" style={{maxWidth:'18rem', maxHeight:'25rem'}}>
+                    <div className="card" style={{ maxWidth: '18rem', maxHeight: '25rem' }}>
                       {/* <img src={product.img_main} alt="" className="card-img-top img-fluid"/> */}
                       <div className="card-body">
                         <h5 className="card-title">{product.product_name}</h5>
@@ -123,7 +122,13 @@ const Home = () => {
         </div>
       </div>
 
-      
+      {/* About Your Shop Section */}
+      <div className="container bg-light py-5" style={{ borderBottom: '1px solid #60606030' }}>
+        <h4 className="display-5 fw-lighter">About Technify</h4>
+        <div className="container w-75">
+          <p className="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, porro. Magni nam sit autem, non commodi ducimus veritatis amet sint?</p>
+        </div>
+      </div>
     </div>
   );
 }
