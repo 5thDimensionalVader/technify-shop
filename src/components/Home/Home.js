@@ -63,17 +63,25 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="container bg-light" style={{ borderTop: '1px solid #60606030', borderBottom: '1px solid #60606030' }}>
-          <div className="row justify-content-center">
-            <div className="col-sm col-md-6 text-start">
-              <span className="display-6 fw-lighter">Newsletter</span>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eos laudantium, ex maiores id assumenda.</p>
+      <div className="container bg-light py-4" style={{ borderTop: '1px solid #60606030', borderBottom: '1px solid #60606030' }}>
+        <div className="row justify-content-center">
+          <div className="col-sm col-md-6">
+            <span className="display-4 fw-lighter text-sm-center text-md-start">Newsletter</span>
+            <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eos laudantium, ex maiores id assumenda.</p>
+          </div>
+          <div className="col-sm col-md-6 align-self-center">
+            <div className="row g-3">
+            <div className="form-floating">
+              <input type="search" id="newsletterSearch" className="form-control" placeholder="Email Address"/>
+              <label>Email Address</label>
             </div>
-            <div className="col-sm">
-              
+            <button className="btn btn-secondary">Subscribe</button>
             </div>
           </div>
+        </div>
       </div>
+
+      
     </div>
   );
 }
