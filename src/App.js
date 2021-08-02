@@ -19,6 +19,7 @@ const App = () => {
           </Switch>
         </div>
         {/* Footer component here */}
+        <Footer/>
       </div>
     </Router>
   );
