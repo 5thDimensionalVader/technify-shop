@@ -6,7 +6,7 @@ import iPhone_XS from '../img/iPhone_XS.png';
 const product = [
   {
     product_name: "iPhone XR",
-    product_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 400,
     img_main: `${iPhone_XR}`,
@@ -46,7 +46,7 @@ const product = [
   },
   {
     product_name: "iPhone XS",
-    product_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 700,
     img_main: "",
@@ -86,7 +86,7 @@ const product = [
   },
   {
     product_name: "iPhone 11 Pro",
-    product_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 600,
     img_main: `${iPhone_11}`,
@@ -126,7 +126,7 @@ const product = [
   },
   {
     product_name: "Macbook Air M1",
-    product_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 999,
     img_main: "",
@@ -166,7 +166,7 @@ const product = [
   }, 
   {
     product_name: "Samsung S21 Ultra",
-    product_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 1499,
     img_main: "",
@@ -206,7 +206,7 @@ const product = [
   },
   {
     product_name: "HP Spectre X360",
-    product_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 2299,
     img_main: "",

@@ -63,21 +63,63 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="container bg-light py-4" style={{ borderTop: '1px solid #60606030', borderBottom: '1px solid #60606030' }}>
-        <div className="row justify-content-center">
-          <div className="col-sm col-md-6">
-            <span className="display-4 fw-lighter text-sm-center text-md-start">Newsletter</span>
+      <div className="container bg-light py-5" style={{ borderBottom: '1px solid #60606030' }}>
+        <div className="row justify-content-center g-4">
+          <div className="col-sm-4 col-md-6 text-sm-center text-md-start">
+            <span className="display-4 fw-lighter">Newsletter</span>
             <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eos laudantium, ex maiores id assumenda.</p>
           </div>
-          <div className="col-sm col-md-6 align-self-center">
-            <div className="row g-3">
-            <div className="form-floating">
-              <input type="search" id="newsletterSearch" className="form-control" placeholder="Email Address"/>
-              <label>Email Address</label>
-            </div>
-            <button className="btn btn-secondary">Subscribe</button>
+          <div className="col-sm-8 col-md-6 align-self-center">
+            <div className="row row-cols-2 g-3">
+              <div className="form-floating">
+                <input type="search" id="newsletterSearch" className="form-control" placeholder="Email Address" />
+                <label>Email Address</label>
+              </div>
+              <button className="btn btn-secondary btn">Subscribe</button>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="container bg-light py-5" style={{ borderBottom: '1px solid #60606030' }}>
+        <div className="row justify-content-center">
+
+          <div className="col-sm align-self-center">
+            <div className="card mb-3" style={{ maxWidth: '400px' }}>
+              <div className="row g-0">
+                <div className="col-md-6 align-self-center">
+                  <img src={product.product[2].img_main} alt="" srcset="" className="img-fluid rounded-start" />
+                </div>
+                <div className="col-md-6">
+                  <div className="card-body">
+                    <h5 className="card-title text-sm-center text-md-start">{product.product[2].product_name}</h5>
+                    <p className="card-text text-sm-center text-md-start">{product.product[2].product_description}</p>
+                    <p className="card-text text-sm-center text-md-start"><small className="text-muted">{`${product.product[2].currency}${product.product[2].price}`}</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-sm">
+            <div className="row g-2">
+              {
+                product.product.map((product, key) => (
+                  <div key={key} className="col-sm-6">
+                    <div className="card" style={{maxWidth:'18rem', maxHeight:'25rem'}}>
+                      {/* <img src={product.img_main} alt="" className="card-img-top img-fluid"/> */}
+                      <div className="card-body">
+                        <h5 className="card-title">{product.product_name}</h5>
+                        <p className="card-text">{product.product_description}</p>
+                        <p className="card-text text-muted">{`${product.currency}${product.price}`}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
         </div>
       </div>
 
