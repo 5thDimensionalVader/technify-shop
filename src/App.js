@@ -5,7 +5,7 @@ import { About, Cart, Footer, Help, Home, Nav, Shop } from "./components";
 const App = () => {
   return (
     <Router>
-      <div className="container-fluid text-center">
+      <div className="container-fluid text-center bg-light">
         {/* Nav component here */}
         <Nav />
         {/* Switch on these different components */}
