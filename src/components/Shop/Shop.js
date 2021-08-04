@@ -1,5 +1,6 @@
 import shopStyles from './shop.module.css';
 import { Link } from 'react-router-dom';
+import {c_1} from '../../assets/'
 
 const Shop = () => {
   return (
@@ -95,12 +96,31 @@ const Shop = () => {
             </div>
           </div>
         </div>
-
-        {/* Newsletter section */}
-        <div className="container">
-          
-        </div>
       </div>
+
+      {/* Newsletter section */}
+      <div className="container my-4 p-4" style={{borderBottom: '1px solid #60606030'}}>
+          <div className="row justify-content-center">
+            <div className="col-md">
+              <img src={c_1} alt="" className="img-fluid"/>
+            </div>
+            <div className="col-md text-sm-center text-md-start align-self-center g-3">
+              <h4 className="display-5 fw-lighter">Newsletter</h4>
+              <div className="row my-3 g-2">
+                <div className="col-md">
+                  <input type="email" placeholder="Email Address" className="form-control"/>
+                </div>
+                <div className="col-md">
+                  <button className="btn btn-secondary">Subscribe</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {/* Product section */}
+      
+
     </div>
   );
 }
