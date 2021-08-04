@@ -31,73 +31,75 @@ const Shop = () => {
         </div>
 
         {/* Category Section */}
-        
-        <div className="row justify-content-center g-2">
+        <div className="container">
+          <div className="row justify-content-center g-2">
 
             <div className="col-md">
-                <div className="card">
-                  <div className="card-header">
-                    Featured
-                  </div>
-                  <div className="card-body">
-                    <h4 className="card-title">Mobile Phones</h4>
-                    <p className="text-muted card-text">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
-                    </p>
-                    <Link to="#" className="btn btn-warning">Go to Category</Link>
-                  </div>
+              <div className="card">
+                <div className="card-header">
+                  Featured
                 </div>
+                <div className="card-body">
+                  <h4 className="card-title">Mobile Phones</h4>
+                  <p className="text-muted card-text">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
+                  </p>
+                  <Link to="#" className="btn btn-warning">Go to Category</Link>
+                </div>
+              </div>
             </div>
 
             <div className="col-md">
-                <div className="card">
-                  <div className="card-header">
-                    Featured
-                  </div>
-                  <div className="card-body">
-                    <h4 className="card-title">Laptops</h4>
-                    <p className="text-muted card-text">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
-                    </p>
-                    <Link to="#" className="btn btn-warning">Go to Category</Link>
-                  </div>
+              <div className="card">
+                <div className="card-header">
+                  Featured
                 </div>
+                <div className="card-body">
+                  <h4 className="card-title">Laptops</h4>
+                  <p className="text-muted card-text">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
+                  </p>
+                  <Link to="#" className="btn btn-warning">Go to Category</Link>
+                </div>
+              </div>
             </div>
 
             <div className="col-md">
-                <div className="card">
-                  <div className="card-header">
-                    Featured
-                  </div>
-                  <div className="card-body">
-                    <h4 className="card-title">Gaming Consoles</h4>
-                    <p className="text-muted card-text">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
-                    </p>
-                    <Link to="#" className="btn btn-warning">Go to Category</Link>
-                  </div>
+              <div className="card">
+                <div className="card-header">
+                  Featured
                 </div>
+                <div className="card-body">
+                  <h4 className="card-title">Gaming Consoles</h4>
+                  <p className="text-muted card-text">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
+                  </p>
+                  <Link to="#" className="btn btn-warning">Go to Category</Link>
+                </div>
+              </div>
             </div>
 
             <div className="col-md">
-                <div className="card">
-                  <div className="card-header">
-                    Featured
-                  </div>
-                  <div className="card-body">
-                    <h4 className="card-title">Tablets</h4>
-                    <p className="text-muted card-text">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
-                    </p>
-                    <Link to="#" className="btn btn-warning">Go to Category</Link>
-                  </div>
+              <div className="card">
+                <div className="card-header">
+                  Featured
                 </div>
+                <div className="card-body">
+                  <h4 className="card-title">Tablets</h4>
+                  <p className="text-muted card-text">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
+                  </p>
+                  <Link to="#" className="btn btn-warning">Go to Category</Link>
+                </div>
+              </div>
             </div>
-            
-
-            
-
           </div>
+        </div>
+
+        {/* Newsletter section */}
+        <div className="container">
+          
+        </div>
       </div>
     </div>
   );
