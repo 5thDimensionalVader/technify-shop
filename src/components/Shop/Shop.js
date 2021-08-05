@@ -1,6 +1,6 @@
 import shopStyles from './shop.module.css';
 import { Link } from 'react-router-dom';
-import { c_1 } from '../../assets/'
+import { news } from '../../assets/'
 import product from '../../assets/data/data.js';
 
 const Shop = () => {
@@ -103,7 +103,7 @@ const Shop = () => {
       <div className="container my-4 p-4" style={{ borderBottom: '1px solid #60606030' }}>
         <div className="row justify-content-center">
           <div className="col-md">
-            <img src={c_1} alt="" className="img-fluid" />
+            <img src={news} alt="" className="img-fluid" />
           </div>
           <div className="col-md text-sm-center text-md-start align-self-center g-3">
             <h4 className="display-5 fw-lighter">Newsletter</h4>
