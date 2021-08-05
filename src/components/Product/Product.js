@@ -100,6 +100,23 @@ const Product = () => {
         <h4 className="display-5">Reviews</h4>
 
         <div className="container mt-4 justify-content-start">
+        <div className="row mb-2">
+            <div className="col-sm align-self-center">
+              <div className="row g-2">
+                <div className="col-sm  col-md-3 col-lg-2">
+                  <span><FaUserCircle size={55} /></span>
+                </div>
+                <div className="col-sm col-md-9 col-lg-10">
+                  <h5 className="fs-4">John Doe</h5>
+                  <h5 className="fs-6 text-muted">August 08, 2021</h5>
+                  <h5 className="fs-6 text-muted">Rating</h5>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm text-sm-center text-md-start">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe inventore, est excepturi iste sapiente numquam quas earum odio provident cumque?
+            </div>
+          </div>
           <div className="row mb-2">
             <div className="col-sm align-self-center">
               <div className="row g-2">
