@@ -1,6 +1,6 @@
 import appStyles from './app.module.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { About, Cart, Footer, Help, Home, Nav, Shop } from "./components";
+import { About, Cart, Footer, Help, Home, Nav, Product, Shop } from "./components";
 
 const App = () => {
   return (
@@ -16,6 +16,7 @@ const App = () => {
             <Route path="/shop"><Shop /></Route>
             <Route path="/help"><Help /></Route>
             <Route path="/cart"><Cart /></Route>
+            <Route path="/product"><Product/></Route>
           </Switch>
         </div>
         {/* Footer component here */}

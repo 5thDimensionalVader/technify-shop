@@ -2,7 +2,7 @@ import productStyles from './product.module.css';
 
 const Product = () => {
   return (
-    <div className="container">
+    <div className="container " style={{ borderTop: '1px solid #60606030'}}>
       <h4 className="display-5 text-center">Product page</h4>
     </div>
   );
