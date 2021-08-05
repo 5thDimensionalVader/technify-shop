@@ -102,7 +102,7 @@ const Home = () => {
 
           <div className="col-sm">
             <div className="container">
-              <div className="row align-sm-center justify-content-sm-center g-2">
+              <div className="row justify-content-sm-center g-2">
                 {
                   product.product.map((product, key) => (
                     <div key={key} className="col-sm-6">

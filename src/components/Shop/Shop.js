@@ -1,6 +1,7 @@
 import shopStyles from './shop.module.css';
 import { Link } from 'react-router-dom';
-import {c_1} from '../../assets/'
+import { c_1 } from '../../assets/'
+import product from '../../assets/data/data.js';
 
 const Shop = () => {
   return (
@@ -99,28 +100,61 @@ const Shop = () => {
       </div>
 
       {/* Newsletter section */}
-      <div className="container my-4 p-4" style={{borderBottom: '1px solid #60606030'}}>
-          <div className="row justify-content-center">
-            <div className="col-md">
-              <img src={c_1} alt="" className="img-fluid"/>
-            </div>
-            <div className="col-md text-sm-center text-md-start align-self-center g-3">
-              <h4 className="display-5 fw-lighter">Newsletter</h4>
-              <div className="row my-3 g-2">
-                <div className="col-md">
-                  <input type="email" placeholder="Email Address" className="form-control"/>
-                </div>
-                <div className="col-md">
-                  <button className="btn btn-secondary">Subscribe</button>
-                </div>
+      <div className="container my-4 p-4" style={{ borderBottom: '1px solid #60606030' }}>
+        <div className="row justify-content-center">
+          <div className="col-md">
+            <img src={c_1} alt="" className="img-fluid" />
+          </div>
+          <div className="col-md text-sm-center text-md-start align-self-center g-3">
+            <h4 className="display-5 fw-lighter">Newsletter</h4>
+            <div className="row my-3 g-2">
+              <div className="col-md">
+                <input type="email" placeholder="Email Address" className="form-control" />
+              </div>
+              <div className="col-md">
+                <button className="btn btn-secondary">Subscribe</button>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
       {/* Product section */}
-      
-
+      <div className="container mt-4 p-4" style={{ borderBottom: '1px solid #60606030' }}>
+        <div className="row g-0">
+          <div className="col-md-4 align-self-center">
+            <h4 className="display-3 fw-lighter text-md-start text-sm-center">All Products</h4>
+            <p className="lead text-md-start text-sm-center mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam dolore maxime impedit natus expedita maiores.</p>
+            <div className="text-md-start text-sm-center mt-4">
+              <button className="btn btn-secondary justify-content-start">Browse All</button>
+            </div>
+          </div>
+          <div className="col-md-8 mt-2">
+            <div className="container">
+              <div className="row justify-content-sm-center g-1">
+                {
+                  product.product.map((product, key) => (
+                    <div key={key} className="card mb-2 me-1" style={{ maxWidth: '400px' }}>
+                      <div className="row g-0">
+                        <div className="col-md-6 align-self-center">
+                          <img src={product.img_main} alt="" srcset="" className="img-fluid rounded-start" />
+                        </div>
+                        <div className="col-md-6">
+                          <div className="card-body">
+                            <h5 className="card-title text-sm-center text-md-start">{product.product_name}</h5>
+                            <p className="card-text text-sm-center text-md-start">{product.product_description}</p>
+                            <p className="card-text text-sm-center text-md-start"><small className="text-muted">{`${product.currency}${product.price}`}</small></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
