@@ -16,11 +16,11 @@ const App = () => {
             <Route path="/shop"><Shop /></Route>
             <Route path="/help"><Help /></Route>
             <Route path="/cart"><Cart /></Route>
-            <Route path="/product"><Product/></Route>
+            <Route path="/product"><Product /></Route>
           </Switch>
         </div>
         {/* Footer component here */}
-        <Footer/>
+        <Footer />
       </div>
     </Router>
   );
