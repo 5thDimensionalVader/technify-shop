@@ -90,9 +90,9 @@ const Home = () => {
         <div className="row justify-content-center">
 
           <div className="col-sm align-self-center">
-            <div className="card mb-3" style={{ maxWidth: '400px' }}>
+            <div className="card mb-3" style={{ maxWidth: '400px' }} onClick={() => goToProduct(2)}>
               <div className="row g-0">
-                <div className="col-md-6 align-self-center" onClick={() => goToProduct(2)}>
+                <div className="col-md-6 align-self-center">
                   <img src={product.product[2].img_main} alt="" srcset="" className="img-fluid rounded-start" />
                 </div>
                 <div className="col-md-6">
@@ -112,7 +112,7 @@ const Home = () => {
                 {
                   product.product.map((product, key) => (
                     <div key={key} className="col-sm-6">
-                      <div className="card" style={{ maxWidth: '18rem', maxHeight: '25rem' }}>
+                      <div className="card" style={{ maxWidth: '18rem', maxHeight: '25rem' }} onClick={() => goToProduct(key)}>
                         {/* <img src={product.img_main} alt="" className="card-img-top img-fluid"/> */}
                         <div className="card-body">
                           <h5 className="card-title">{product.product_name}</h5>

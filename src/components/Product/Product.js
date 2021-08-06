@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import productStyles from './product.module.css';
 import { iPhone_XR_p } from '../../assets';
-import product from '../../assets/data/data.js';
+import data from '../../assets/data/data.js';
 import { FaUserCircle } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 
@@ -13,8 +13,8 @@ const Product = () => {
 
   useEffect(() => {
     setProductID(location.state.product_id);
-    setNewProduct(product[2]);
-    console.log(product[0]);
+    setNewProduct(data.product[productID]);
+    console.log(data.product[productID]);
   });
 
 
@@ -34,7 +34,7 @@ const Product = () => {
             <div>
               <div className="row row-cols-3 mt-5 g-0">
                 <span>{newProduct?.rating} star(s)</span>
-                {/* <span>{newProduct?.reviews.length} reviews</span> */}
+                <span>{newProduct?.reviews?.length} reviews</span>
               </div>
               <div className="row row-cols-3 mt-4 g-0">
                 <span className="fs-3">{`${newProduct?.currency}${newProduct?.price}`}</span>
@@ -42,7 +42,7 @@ const Product = () => {
                   <select className="form-select">
                     <option selected>Select Model</option>
                     {
-                      newProduct?.product_model.map((model, key) => (
+                      newProduct?.product_model?.map((model, key) => (
                         <option key={key}>{model}</option>
                       ))
                     }
@@ -67,13 +67,13 @@ const Product = () => {
             <div className="card mb-2 me-1" style={{ maxWidth: '350px' }}>
               <div className="row g-0">
                 <div className="col-md-6 align-self-center">
-                  <img src={product.product[2].img_main} alt="" srcset="" className="img-fluid rounded-start" />
+                  <img src={data.product[2].img_main} alt="" srcset="" className="img-fluid rounded-start" />
                 </div>
                 <div className="col-md-6">
                   <div className="card-body">
-                    <h5 className="card-title text-sm-center text-md-start">{product.product[2].product_name}</h5>
-                    <p className="card-text text-sm-center text-md-start">{product.product[2].rating} stars </p>
-                    <p className="card-text text-sm-center text-md-start"><small className="text-muted">{`${product.product[2].currency}${product.product[2].price}`}</small></p>
+                    <h5 className="card-title text-sm-center text-md-start">{data.product[2].product_name}</h5>
+                    <p className="card-text text-sm-center text-md-start">{data.product[2].rating} stars </p>
+                    <p className="card-text text-sm-center text-md-start"><small className="text-muted">{`${data.product[2].currency}${data.product[2].price}`}</small></p>
                   </div>
                 </div>
               </div>
@@ -83,13 +83,13 @@ const Product = () => {
             <div className="card mb-2 me-1" style={{ maxWidth: '350px' }}>
               <div className="row g-0">
                 <div className="col-md-6 align-self-center">
-                  <img src={product.product[2].img_main} alt="" srcset="" className="img-fluid rounded-start" />
+                  <img src={data.product[2].img_main} alt="" srcset="" className="img-fluid rounded-start" />
                 </div>
                 <div className="col-md-6">
                   <div className="card-body">
-                    <h5 className="card-title text-sm-center text-md-start">{product.product[2].product_name}</h5>
-                    <p className="card-text text-sm-center text-md-start">{product.product[2].rating} stars </p>
-                    <p className="card-text text-sm-center text-md-start"><small className="text-muted">{`${product.product[2].currency}${product.product[2].price}`}</small></p>
+                    <h5 className="card-title text-sm-center text-md-start">{data.product[2].product_name}</h5>
+                    <p className="card-text text-sm-center text-md-start">{data.product[2].rating} stars </p>
+                    <p className="card-text text-sm-center text-md-start"><small className="text-muted">{`${data.product[2].currency}${data.product[2].price}`}</small></p>
                   </div>
                 </div>
               </div>
@@ -99,13 +99,13 @@ const Product = () => {
             <div className="card mb-2 me-1" style={{ maxWidth: '350px' }}>
               <div className="row g-0">
                 <div className="col-md-6 align-self-center">
-                  <img src={product.product[2].img_main} alt="" srcset="" className="img-fluid rounded-start" />
+                  <img src={data.product[2].img_main} alt="" srcset="" className="img-fluid rounded-start" />
                 </div>
                 <div className="col-md-6">
                   <div className="card-body">
-                    <h5 className="card-title text-sm-center text-md-start">{product.product[2].product_name}</h5>
-                    <p className="card-text text-sm-center text-md-start">{product.product[2].rating} stars </p>
-                    <p className="card-text text-sm-center text-md-start"><small className="text-muted">{`${product.product[2].currency}${product.product[2].price}`}</small></p>
+                    <h5 className="card-title text-sm-center text-md-start">{data.product[2].product_name}</h5>
+                    <p className="card-text text-sm-center text-md-start">{data.product[2].rating} stars </p>
+                    <p className="card-text text-sm-center text-md-start"><small className="text-muted">{`${data.product[2].currency}${data.product[2].price}`}</small></p>
                   </div>
                 </div>
               </div>
@@ -120,7 +120,7 @@ const Product = () => {
 
         <div className="container mt-4 justify-content-start">
           {
-            newProduct?.reviews.map((review, key) => (
+            newProduct?.reviews?.map((review, key) => (
               <div key={key} className="row mb-2">
                 <div className="col-sm align-self-center">
                   <div className="row g-2">
