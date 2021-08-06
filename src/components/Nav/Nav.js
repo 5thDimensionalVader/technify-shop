@@ -31,7 +31,7 @@ const Nav = () => {
               <Link className="nav-link" to="/help">Help</Link>
             </li>
             <li className="nav-item ms-3 d-none d-md-inline">
-              <Link className="nav-link btn btn-primary btn-sm text-white" to="/cart">
+              <Link className="nav-link btn btn-primary btn-sm text-white" to="/checkout">
                 <span className="me-2"><MdShoppingCart color="white"/></span>
                 <span>Your Cart</span>
               </Link>

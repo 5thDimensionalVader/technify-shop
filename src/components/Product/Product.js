@@ -1,9 +1,23 @@
+import { useState, useEffect } from 'react';
 import productStyles from './product.module.css';
 import { iPhone_XR_p } from '../../assets';
 import product from '../../assets/data/data.js';
 import { FaUserCircle } from 'react-icons/fa';
+import { useLocation } from 'react-router-dom';
 
 const Product = () => {
+  const location = useLocation();
+  // set for product_id
+  const [productID, setProductID] = useState(null);
+  const [newProduct, setNewProduct] = useState({});
+
+  useEffect(() => {
+    setProductID(location.state.product_id);
+    setNewProduct(product[2]);
+    console.log(product[0]);
+  });
+
+
   return (
     <div className="container py-1" style={{ borderTop: '1px solid #60606030' }}>
 
@@ -16,22 +30,27 @@ const Product = () => {
           </div>
 
           <div className="col-md-6 text-sm-center text-md-start p-4 align-self-center">
-            <h4 className="display-4 fw-light">Product Name</h4>
+            <h4 className="display-4 fw-light">{newProduct?.product_name}</h4>
             <div>
               <div className="row row-cols-3 mt-5 g-0">
-                <span>Rating</span>
-                <span>5 reviews</span>
+                <span>{newProduct?.rating} star(s)</span>
+                {/* <span>{newProduct?.reviews.length} reviews</span> */}
               </div>
               <div className="row row-cols-3 mt-4 g-0">
-                <span className="fs-3">Price</span>
+                <span className="fs-3">{`${newProduct?.currency}${newProduct?.price}`}</span>
                 <div>
                   <select className="form-select">
                     <option selected>Select Model</option>
+                    {
+                      newProduct?.product_model.map((model, key) => (
+                        <option key={key}>{model}</option>
+                      ))
+                    }
                   </select>
                 </div>
               </div>
             </div>
-            <p className="my-4 lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam nisi quis odit obcaecati et aspernatur maiores nostrum, optio vel, earum non. Sed perspiciatis aperiam facere id qui beatae fugit animi.</p>
+            <p className="my-4 lead">{newProduct?.product_description}</p>
             <button className="btn btn-secondary">Add to Cart</button>
           </div>
 
@@ -100,40 +119,27 @@ const Product = () => {
         <h4 className="display-5">Reviews</h4>
 
         <div className="container mt-4 justify-content-start">
-        <div className="row mb-2">
-            <div className="col-sm align-self-center">
-              <div className="row g-2">
-                <div className="col-sm  col-md-3 col-lg-2">
-                  <span><FaUserCircle size={55} /></span>
+          {
+            newProduct?.reviews.map((review, key) => (
+              <div key={key} className="row mb-2">
+                <div className="col-sm align-self-center">
+                  <div className="row g-2">
+                    <div className="col-sm  col-md-3 col-lg-2">
+                      <span><FaUserCircle size={55} /></span>
+                    </div>
+                    <div className="col-sm col-md-9 col-lg-10">
+                      <h5 className="fs-4">{review.user}</h5>
+                      <h5 className="fs-6 text-muted">{review.created_at}</h5>
+                      <h5 className="fs-6 text-muted">{review.rating} star(s)</h5>
+                    </div>
+                  </div>
                 </div>
-                <div className="col-sm col-md-9 col-lg-10">
-                  <h5 className="fs-4">John Doe</h5>
-                  <h5 className="fs-6 text-muted">August 08, 2021</h5>
-                  <h5 className="fs-6 text-muted">Rating</h5>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm text-sm-center text-md-start">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe inventore, est excepturi iste sapiente numquam quas earum odio provident cumque?
-            </div>
-          </div>
-          <div className="row mb-2">
-            <div className="col-sm align-self-center">
-              <div className="row g-2">
-                <div className="col-sm  col-md-3 col-lg-2">
-                  <span><FaUserCircle size={55} /></span>
-                </div>
-                <div className="col-sm col-md-9 col-lg-10">
-                  <h5 className="fs-4">John Doe</h5>
-                  <h5 className="fs-6 text-muted">August 08, 2021</h5>
-                  <h5 className="fs-6 text-muted">Rating</h5>
+                <div className="col-sm text-sm-center text-md-start">
+                  {review.review}
                 </div>
               </div>
-            </div>
-            <div className="col-sm text-sm-center text-md-start">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe inventore, est excepturi iste sapiente numquam quas earum odio provident cumque?
-            </div>
-          </div>
+            ))
+          }
         </div>
       </div>
     </div>

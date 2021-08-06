@@ -2,9 +2,15 @@ import homeStyles from './home.module.css';
 import { c_1, c_2, c_3, c_4, iPhone_11, iPhone_XR } from '../../assets';
 import { Link } from 'react-router-dom';
 import product from '../../assets/data/data.js';
-
+import { useHistory } from 'react-router-dom';
 
 const Home = () => {
+  const history = useHistory();
+
+  const goToProduct = (id) => {
+    history.push('/product', {product_id:id});
+  }
+
   return (
     <div className="container">
 
@@ -86,7 +92,7 @@ const Home = () => {
           <div className="col-sm align-self-center">
             <div className="card mb-3" style={{ maxWidth: '400px' }}>
               <div className="row g-0">
-                <div className="col-md-6 align-self-center">
+                <div className="col-md-6 align-self-center" onClick={() => goToProduct(2)}>
                   <img src={product.product[2].img_main} alt="" srcset="" className="img-fluid rounded-start" />
                 </div>
                 <div className="col-md-6">

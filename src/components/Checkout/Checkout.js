@@ -1,7 +1,9 @@
+import { CheckoutNav } from "..";
+
 const Checkout = () => {
   return (
     <div className="container">
-      <h4 className="display-6 text-center">Checkout page</h4>
+      <CheckoutNav/>
     </div>
   );
 }
