@@ -8,6 +8,7 @@ import Product from './Product/Product.js';
 import Shipping from './Shipping/Shipping.js';
 import Shop from './Shop/Shop.js';
 import Footer from './Footer/Footer.js';
+import Checkout from './Checkout/Checkout.js';
 
 
-export {About, Cart, Help, Home, Nav, Payment, Shipping, Product, Shop, Footer};
+export {About, Cart, Help, Home, Nav, Payment, Shipping, Product, Shop, Footer, Checkout};
