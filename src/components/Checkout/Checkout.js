@@ -1,11 +1,12 @@
-import { CheckoutNav } from "..";
+import { Cart, Shipping, Payment } from "..";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   return (
     <div className="container">
-      <CheckoutNav/>
+      
     </div>
   );
 }
- 
+
 export default Checkout;

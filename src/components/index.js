@@ -9,7 +9,6 @@ import Shipping from './Shipping/Shipping.js';
 import Shop from './Shop/Shop.js';
 import Footer from './Footer/Footer.js';
 import Checkout from './Checkout/Checkout.js';
-import CheckoutNav from './Checkout/CheckoutNav.js';
 
 
-export {About, Cart, Help, Home, Nav, Payment, Shipping, Product, Shop, Footer, Checkout, CheckoutNav};
+export {About, Cart, Help, Home, Nav, Payment, Shipping, Product, Shop, Footer, Checkout};
