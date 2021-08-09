@@ -1,11 +1,21 @@
-import { Cart, Shipping, Payment } from "..";
-import { Link } from "react-router-dom";
+import { Cart, Shipping, Payment, CheckoutNav } from "..";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const Checkout = () => {
   return (
-    <div className="container">
-      
-    </div>
+    <Router>
+      <div className="container">
+        <CheckoutNav />
+
+        {/* Checkout Content */}
+        <Switch>
+          <Route exact path='/checkout'><Cart /></Route>
+          <Route path='/cart'><Cart /></Route>
+          <Route path='/shipping'><Shipping /></Route>
+          <Route path='/payment'><Payment /></Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
