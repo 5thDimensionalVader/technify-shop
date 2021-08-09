@@ -2,8 +2,14 @@ import shopStyles from './shop.module.css';
 import { Link } from 'react-router-dom';
 import { news } from '../../assets/'
 import product from '../../assets/data/data.js';
+import { useHistory } from 'react-router-dom';
 
 const Shop = () => {
+  const history = useHistory();
+
+  const goToProduct = (id) => {
+    history.push('/product', {product_id:id});
+  }
   return (
     <div className="container">
 
@@ -134,7 +140,7 @@ const Shop = () => {
               <div className="row justify-content-sm-center g-1">
                 {
                   product.product.map((product, key) => (
-                    <div key={key} className="card mb-2 me-1" style={{ maxWidth: '400px' }}>
+                    <div key={key} className="card mb-2 me-1" style={{ maxWidth: '400px' }} onClick={() => goToProduct(key)}>
                       <div className="row g-0">
                         <div className="col-md-6 align-self-center">
                           <img src={product.img_main} alt="" srcset="" className="img-fluid rounded-start" />

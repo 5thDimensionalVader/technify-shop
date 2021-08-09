@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import productStyles from './product.module.css';
-import { iPhone_XR_p } from '../../assets';
 import data from '../../assets/data/data.js';
 import { FaUserCircle } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 
 const Product = () => {
+
   const location = useLocation();
   // set for product_id
   const [productID, setProductID] = useState(null);
@@ -26,7 +26,7 @@ const Product = () => {
         <div className="row">
 
           <div className="col-md-6 p-4">
-            <img src={iPhone_XR_p} alt="iPhone_product_img" className="img-fluid rounded rounded-start" />
+            <img src={newProduct?.img_main} alt="product_img" className="img-fluid rounded rounded-start"/>
           </div>
 
           <div className="col-md-6 text-sm-center text-md-start p-4 align-self-center">

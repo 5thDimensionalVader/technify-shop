@@ -2,6 +2,8 @@ import iPhone_11 from '../img/iPhone_11_Pro.png';
 import iPhone_XR from '../img/iPhone_XR_blue.png';
 import S21_Ultra from '../img/S21_Ultra.png';
 import iPhone_XS from '../img/iPhone_XS.png';
+import M1_Air from '../img/Macbook_Air_M1.png';
+import Spectre_360 from '../img/HP_Spectre_X360.png';
 
 const product = [
   {
@@ -49,7 +51,7 @@ const product = [
     product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 700,
-    img_main: "",
+    img_main: `${iPhone_XS}`,
     images: [
       "",
       "",
@@ -129,7 +131,7 @@ const product = [
     product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 999,
-    img_main: "",
+    img_main: `${M1_Air}`,
     images: [
       "",
       "",
@@ -169,7 +171,7 @@ const product = [
     product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 1499,
-    img_main: "",
+    img_main: `${S21_Ultra}`,
     images: [
       "",
       "",
@@ -209,7 +211,7 @@ const product = [
     product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 2299,
-    img_main: "",
+    img_main: `${Spectre_360}`,
     images: [
       "",
       "",
