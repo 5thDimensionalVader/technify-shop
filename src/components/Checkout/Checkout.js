@@ -8,12 +8,14 @@ const Checkout = () => {
         <CheckoutNav />
 
         {/* Checkout Content */}
-        <Switch>
-          <Route exact path='/checkout'><Cart /></Route>
-          <Route path='/cart'><Cart /></Route>
-          <Route path='/shipping'><Shipping /></Route>
-          <Route path='/payment'><Payment /></Route>
-        </Switch>
+        <div className="container my-4">
+          <Switch>
+            <Route exact path='/checkout'><Cart /></Route>
+            <Route path='/cart'><Cart /></Route>
+            <Route path='/shipping'><Shipping /></Route>
+            <Route path='/payment'><Payment /></Route>
+          </Switch>
+        </div>
       </div>
     </Router>
   );

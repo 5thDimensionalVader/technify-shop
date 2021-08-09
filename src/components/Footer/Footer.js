@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <div className="container bg-light py-3">
+    <div className="container py-3">
       <nav className="navbar navbar-expand-lg navbar-light py-3">
         <div className="container">
           {/* Navbar Links */}
