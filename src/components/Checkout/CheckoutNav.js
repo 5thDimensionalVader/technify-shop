@@ -5,7 +5,7 @@ const CheckoutNav = () => {
     <div className="container">
         <ul className="nav nav-tabs justify-content-center">
           <li className="nav-item">
-            <Link className="nav-link active" to='/cart'>1. Shopping Cart</Link>
+            <Link className="nav-link" to='/cart'>1. Shopping Cart</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to='/shipping'>2. Shipping Details</Link>
