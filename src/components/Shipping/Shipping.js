@@ -77,8 +77,8 @@ const Shipping = () => {
           {/* Shipping options section */}
           <div className="row g-3">
             <div className="col-sm col-md-4">
-              <div className="container">
-                <div className="form-check text-start py-2 border border-1 border-secondary">
+              <div className="container border border-1 border-secondary py-2">
+                <div className="form-check text-start pe-3">
                   <input type="radio" className="form-check-input" />
                   <label className="form-check-label">
                     <h6 className="fs-5">Free Shipping</h6>
@@ -88,8 +88,8 @@ const Shipping = () => {
               </div>
             </div>
             <div className="col-sm col-md-4">
-              <div className="container">
-                <div className="form-check text-start py-2 border border-1 border-secondary">
+              <div className="container border border-1 border-secondary py-2">
+                <div className="form-check text-start pe-3">
                   <input type="radio" className="form-check-input" />
                   <label className="form-check-label">
                     <h6 className="fs-5">Next Day Delivery - $20</h6>
@@ -101,7 +101,7 @@ const Shipping = () => {
           </div>
 
           {/* Buttons section */}
-          <div className="mt-3 justify-content-start" style={{borderTop:'1px solid #60606030'}}>
+          <div className="mt-3 justify-content-start" style={{ borderTop: '1px solid #60606030' }}>
             <div className="row-cols-4 my-3">
               <button className="btn btn-secondary me-2">Next</button>
               <button className="btn btn-light">Cancel</button>
