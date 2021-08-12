@@ -1,14 +1,14 @@
 import shopStyles from './shop.module.css';
 import { Link } from 'react-router-dom';
 import { news } from '../../assets/'
-import product from '../../assets/data/data.js';
+import data from '../../assets/data/data.js';
 import { useHistory } from 'react-router-dom';
 
 const Shop = () => {
   const history = useHistory();
 
   const goToProduct = (id) => {
-    history.push('/product', {product_id:id});
+    history.push('/product', { product_id: id });
   }
   return (
     <div className="container">
@@ -41,66 +41,24 @@ const Shop = () => {
         {/* Category Section */}
         <div className="container">
           <div className="row justify-content-center g-2">
-
-            <div className="col-md">
-              <div className="card">
-                <div className="card-header">
-                  Featured
+            {
+              data.categories.map((category, key) => (
+                <div key={key} className="col-md">
+                  <div className="card">
+                    <div className="card-header">
+                      Featured
+                    </div>
+                    <div className="card-body">
+                      <h4 className="card-title">{category.name}</h4>
+                      <p className="text-muted card-text">
+                        {category.category_description}
+                      </p>
+                      <Link to="#" className="btn btn-warning">Go to Category</Link>
+                    </div>
+                  </div>
                 </div>
-                <div className="card-body">
-                  <h4 className="card-title">Mobile Phones</h4>
-                  <p className="text-muted card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
-                  </p>
-                  <Link to="#" className="btn btn-warning">Go to Category</Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md">
-              <div className="card">
-                <div className="card-header">
-                  Featured
-                </div>
-                <div className="card-body">
-                  <h4 className="card-title">Laptops</h4>
-                  <p className="text-muted card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
-                  </p>
-                  <Link to="#" className="btn btn-warning">Go to Category</Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md">
-              <div className="card">
-                <div className="card-header">
-                  Featured
-                </div>
-                <div className="card-body">
-                  <h4 className="card-title">Gaming Consoles</h4>
-                  <p className="text-muted card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
-                  </p>
-                  <Link to="#" className="btn btn-warning">Go to Category</Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md">
-              <div className="card">
-                <div className="card-header">
-                  Featured
-                </div>
-                <div className="card-body">
-                  <h4 className="card-title">Tablets</h4>
-                  <p className="text-muted card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!
-                  </p>
-                  <Link to="#" className="btn btn-warning">Go to Category</Link>
-                </div>
-              </div>
-            </div>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -139,7 +97,7 @@ const Shop = () => {
             <div className="container">
               <div className="row justify-content-sm-center g-1">
                 {
-                  product.product.map((product, key) => (
+                  data.product.map((product, key) => (
                     <div key={key} className="card mb-2 me-1" style={{ maxWidth: '400px' }} onClick={() => goToProduct(key)}>
                       <div className="row g-0">
                         <div className="col-md-6 align-self-center">

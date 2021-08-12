@@ -249,4 +249,24 @@ const product = [
 ]
 
 
-export default {product};
+const categories = [
+  {
+    name: "Mobile Phones",
+    category_description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!"
+  },
+  {
+    name: "Laptops",
+    category_description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!"
+  },
+  {
+    name: "Video Game Consoles",
+    category_description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!"
+  },
+  {
+    name: "Tablets",
+    category_description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, rem!"
+  },
+]
+
+
+export default {product, categories};
