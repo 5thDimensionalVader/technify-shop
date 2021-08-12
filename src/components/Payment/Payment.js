@@ -1,9 +1,8 @@
 import paymentStyles from './payment.module.css';
-import { M1_Macbook } from '../../assets';
 import { BsCreditCard, BsInfoCircle } from 'react-icons/bs';
 import { ImPaypal } from 'react-icons/im';
 
-const Payment = () => {
+const Payment = ({ cart }) => {
   return (
     <div className="container text-sm-center text-md-start">
       <div className="row g-5">
@@ -84,24 +83,19 @@ const Payment = () => {
           </div>
           {/* Cart product section */}
           <div className="mt-2 py-2" style={{ borderBottom: '1px solid #60606030' }}>
-            <div className="row">
-              <div className="col-sm col-md-6">
-                <img src={M1_Macbook} alt="" className="img-fluid" style={{ maxHeight: '110px', maxWidth: '150px' }} />
-              </div>
-              <div className="col-sm col-md-6 align-self-center text-sm-center text-md-start">
-                <h5 className="fs-6">Product Name</h5>
-                <h5 className="fs-6 text-muted">Price</h5>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-sm col-md-6">
-                <img src={M1_Macbook} alt="" className="img-fluid" style={{ maxHeight: '110px', maxWidth: '150px' }} />
-              </div>
-              <div className="col-sm col-md-6 align-self-center text-sm-center text-md-start">
-                <h5 className="fs-6">Product Name</h5>
-                <h5 className="fs-6 text-muted">Price</h5>
-              </div>
-            </div>
+            {
+              cart.map((item, key) => (
+                <div key={key} className="row">
+                  <div className="col-sm col-md-6">
+                    <img src={item?.img_main} alt="" className="img-fluid" style={{ maxHeight: '110px', maxWidth: '150px' }} />
+                  </div>
+                  <div className="col-sm col-md-6 align-self-center text-sm-center text-md-start">
+                    <h5 className="fs-6">{item?.product_name}</h5>
+                    <h5 className="fs-6 text-muted">{`${item?.currency}${item?.price}`}</h5>
+                  </div>
+                </div>
+              ))
+            }
           </div>
           {/* Voucher section */}
           <div className="py-2" style={{ borderBottom: '1px solid #60606030' }}>

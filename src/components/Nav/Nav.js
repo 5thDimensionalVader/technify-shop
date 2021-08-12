@@ -2,7 +2,7 @@ import navStyles from './nav.module.css';
 import { Link } from 'react-router-dom';
 import { MdShoppingCart } from 'react-icons/md';
 
-const Nav = () => {
+const Nav = ({cartSize}) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light py-3">
       <div className="container-xxl">
@@ -31,9 +31,13 @@ const Nav = () => {
               <Link className="nav-link" to="/help">Help</Link>
             </li>
             <li className="nav-item ms-3 d-none d-md-inline">
-              <Link className="nav-link btn btn-primary btn-sm text-white" to="/checkout">
-                <span className="me-2"><MdShoppingCart color="white"/></span>
+              <Link className="nav-link btn btn-primary position-relative btn-sm text-white" to="/checkout">
+                <span className="me-2"><MdShoppingCart color="white" /></span>
                 <span>Your Cart</span>
+                {/* <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  0
+                </span> */}
+                <span className="badge bg-danger ms-1">{cartSize}</span>
               </Link>
             </li>
           </ul>

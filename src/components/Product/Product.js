@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import productStyles from './product.module.css';
 import data from '../../assets/data/data.js';
 import { FaUserCircle } from 'react-icons/fa';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
-const Product = () => {
+const Product = ({setCart, cart}) => {
 
+  const history = useHistory();
   const location = useLocation();
   // set for product_id
   const [productID, setProductID] = useState(null);
@@ -51,7 +52,10 @@ const Product = () => {
               </div>
             </div>
             <p className="my-4 lead">{newProduct?.product_description}</p>
-            <button className="btn btn-secondary">Add to Cart</button>
+            <button className="btn btn-secondary" onClick={() => {
+                setCart([...cart, newProduct]);
+                history.push('/shop');
+            }}>Add to Cart</button>
           </div>
 
         </div>
