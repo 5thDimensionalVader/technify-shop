@@ -2,6 +2,8 @@ import { Cart, Shipping, Payment, CheckoutNav } from "..";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const Checkout = () => {
+  // set the title of the page
+  document.title = "Technify - Checkout";
   return (
     <Router>
       <div className="container">

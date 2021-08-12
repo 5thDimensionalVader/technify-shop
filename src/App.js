@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { About, Checkout, Footer, Help, Home, Nav, Product, Shop } from "./components";
 
 const App = () => {
+  // set the title of the page
+  document.title = "Technify - Home";
   return (
     <Router>
       <div className="container-fluid text-center">
