@@ -6,7 +6,7 @@ import { useState } from 'react';
 const App = () => {
   // create a state for an empty array that will be our cart
   const [cart, setCart] = useState([]);
-  console.log(cart);
+  // console.log(cart);
 
   return (
     <Router>

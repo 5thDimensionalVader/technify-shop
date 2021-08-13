@@ -5,8 +5,6 @@ import data from '../../assets/data/data.js';
 import { useHistory } from 'react-router-dom';
 
 const Shop = () => {
-  // set the title of the page
-  document.title = "Technify - Shop";
   const history = useHistory();
 
   const goToProduct = (id) => {

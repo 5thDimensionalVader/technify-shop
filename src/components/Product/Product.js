@@ -15,7 +15,6 @@ const Product = ({setCart, cart}) => {
   useEffect(() => {
     setProductID(location.state.product_id);
     setNewProduct(data.product[productID]);
-    console.log(data.product[productID]);
   });
 
 

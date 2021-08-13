@@ -11,6 +11,7 @@ const product = [
     product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 400,
+    product_quantity: 1,
     img_main: `${iPhone_XR}`,
     images: [
       "",
@@ -51,6 +52,7 @@ const product = [
     product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 700,
+    product_quantity: 1,
     img_main: `${iPhone_XS}`,
     images: [
       "",
@@ -91,6 +93,7 @@ const product = [
     product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 600,
+    product_quantity: 1,
     img_main: `${iPhone_11}`,
     images: [
       "",
@@ -131,6 +134,7 @@ const product = [
     product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 999,
+    product_quantity: 1,
     img_main: `${M1_Air}`,
     images: [
       "",
@@ -171,6 +175,7 @@ const product = [
     product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 1499,
+    product_quantity: 1,
     img_main: `${S21_Ultra}`,
     images: [
       "",
@@ -211,6 +216,7 @@ const product = [
     product_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     currency: "$",
     price: 2299,
+    product_quantity: 1,
     img_main: `${Spectre_360}`,
     images: [
       "",
