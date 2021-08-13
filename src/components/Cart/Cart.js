@@ -10,18 +10,20 @@ const Cart = ({ cart }) => {
   const taxes = (subTotal * 7.5) / 100;
   const netTotal = (subTotal + taxes).toFixed(2);
 
-  const handleQuantityCalc = (e,index) => {
-      setProductQuantity(e.target.value);
-      const item = productCart[index]; // Find the object with the desired index
-      item.product_quantity = productQuantity; //setting the object key value to the input
+  const handleQuantityCalc = (e, index) => {
+    setProductQuantity(e.target.value);
+    const item = productCart[index]; // Find the object with the desired index
+    item.product_quantity = productQuantity; //setting the object key value to the input
 
-      // Now the goal is to replace this updated item with a new product_quantity with the old item in the productCart
-      // setProductCart(productCart.splice(index, 1, item)); // this was meant to use the index of the object to insert the item object and delete the previous value, but it ends up deleting any other object in the array instead of the desired one
-      // setProductCart(productCart.map(itemObject => productCart.find((i, key) => key === index) || itemObject)); // this is iterating through the productCart array, finding the object we are looking for and changing other objects to match the object we found with the key
-      
-      console.log(productCart);
+    // Now the goal is to replace this updated item with a new product_quantity with the old item in the productCart
+
+    setProductCart([...productCart, productCart.splice(index, 0, item)]);
+    // console.log(productCart);
   }
 
+  useEffect(() => {
+    console.log("On re-render -> ", productCart);
+  }, []);
 
   return (
     <div className="container text-sm-center text-md-start">
@@ -36,7 +38,7 @@ const Cart = ({ cart }) => {
           <div className="my-5 p-0">
             {
               productCart.map((item, key) => (
-                <div key={key} className="row g-1 mb-3">
+                Object.keys(item).length > 0 ? (<div key={key} className="row g-1 mb-3">
                   <div className="col-sm col-md-3">
                     <img src={item?.img_main} alt="product_img" className="img-fluid" style={{ maxHeight: '110px', maxWidth: '150px' }} />
                   </div>
@@ -55,7 +57,7 @@ const Cart = ({ cart }) => {
                       onChange={(e) => handleQuantityCalc(e, key)}
                     />
                   </div>
-                </div>
+                </div>):""
               ))
             }
           </div>
