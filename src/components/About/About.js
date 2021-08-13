@@ -1,9 +1,6 @@
 import aboutStyles from './about.module.css';
 
 const About = () => {
-  // set the title of the page
-  document.title = "Technify - About Us";
-
   return (
     <div className="container">
       <h4 className="display-4 text-center fw-bold"> About Us</h4>

@@ -1,7 +1,11 @@
 import shippingStyles from './shipping.module.css';
-import { M1_Macbook } from '../../assets';
 
 const Shipping = ({ cart }) => {
+  // subtotal, taxes and net total calculation
+  const subTotal = cart.map((item) => item.price).reduce((acc, next) => acc + next, 0);
+  const taxes = (subTotal * 7.5) / 100;
+  const netTotal = (subTotal + taxes).toFixed(2);
+
   return (
     <div className="container text-sm-center text-md-start">
       <div className="row g-5">
@@ -145,9 +149,9 @@ const Shipping = ({ cart }) => {
               <h4 className="fw-light fs-6 mb-3">TAXES</h4>
             </div>
             <div className="col-sm col-md text-sm-center text-md-end">
-              <h4 className="fw-light fs-6 mb-3">SUBTOTAL</h4>
-              <h4 className="fw-light fs-6 mb-3">SHIPPING</h4>
-              <h4 className="fw-light fs-6 mb-3">TAXES</h4>
+              <h4 className="fw-light fs-6 mb-3">{subTotal}</h4>
+              <h4 className="fw-light fs-6 mb-3">FREE</h4>
+              <h4 className="fw-light fs-6 mb-3">{taxes}</h4>
             </div>
           </div>
           <div className="row py-3" style={{ borderTop: '1px solid #60606030' }}>
@@ -155,7 +159,7 @@ const Shipping = ({ cart }) => {
               <h4 className="fw-light fs-4 mb-3">TOTAL</h4>
             </div>
             <div className="col-sm col-md text-sm-center text-md-end">
-              <h4 className="fw-bold fs-4 mb-3">TOTAL</h4>
+              <h4 className="fw-bold fs-4 mb-3">{netTotal}</h4>
             </div>
           </div>
         </div>

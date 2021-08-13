@@ -16,7 +16,6 @@ const Cart = ({ cart }) => {
     item.product_quantity = productQuantity; //setting the object key value to the input
 
     // Now the goal is to replace this updated item with a new product_quantity with the old item in the productCart
-
     setProductCart([...productCart, productCart.splice(index, 0, item)]);
     // console.log(productCart);
   }
