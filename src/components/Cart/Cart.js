@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import cartStyles from './cart.module.css';
 
 const Cart = ({ cart }) => {
+  const history = useHistory();
   // state for product quantity
   const [productQuantity, setProductQuantity] = useState(1);
   const [productCart, setProductCart] = useState(cart);
@@ -18,6 +20,14 @@ const Cart = ({ cart }) => {
     // Now the goal is to replace this updated item with a new product_quantity with the old item in the productCart
     setProductCart([...productCart, productCart.splice(index, 0, item)]);
     // console.log(productCart);
+  }
+
+  const nextPage = () => {
+    if (productCart.length === 0) {
+      return <div className="alert alert-warning" role="alert"> Nothing in cart, go back to Shop for items!</div>;
+    } else {
+      history.push('/shipping');
+    }
   }
 
   useEffect(() => {
@@ -56,15 +66,15 @@ const Cart = ({ cart }) => {
                       onChange={(e) => handleQuantityCalc(e, key)}
                     />
                   </div>
-                </div>):""
+                </div>) : ""
               ))
             }
           </div>
 
           <div className="" style={{ borderTop: '1px solid #60606030' }}>
             <div className="row-cols-4 my-3">
-              <button className="btn btn-secondary me-2">Next</button>
-              <button className="btn btn-light">Cancel</button>
+              <button type="button" className="btn btn-secondary me-2" onClick={() => history.push('/shipping')}>Next</button>
+              <button type="button" className="btn btn-light" onClick={() => history.push('/shop')}>Cancel</button>
             </div>
           </div>
         </div>
