@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Alert } from 'react-bootstrap';
 import cartStyles from './cart.module.css';
 
 const Cart = ({ cart }) => {
   const history = useHistory();
-  // state for product quantity
+  
+  // State Mgt
   const [productQuantity, setProductQuantity] = useState(1);
   const [productCart, setProductCart] = useState(cart);
+  const [show, setShow] = useState(false); /* for the Alert component from React Bootstrap */
+
+
   // subtotal, taxes and net total calculation
   const subTotal = productCart.map((item) => item.price).reduce((acc, next) => acc + next, 0);
   const taxes = (subTotal * 7.5) / 100;
@@ -23,16 +28,20 @@ const Cart = ({ cart }) => {
   }
 
   const nextPage = () => {
-    if (productCart.length === 0) {
-      return <div className="alert alert-warning" role="alert"> Nothing in cart, go back to Shop for items!</div>;
+    if (!productCart.length){
+      setShow(true);
+      <Alert variant="warning" onClose={()=> setShow(false)} dismissible>
+        <Alert.Heading>Oh Snap! There's nothing in your cart</Alert.Heading>
+        <p>Try going back to the shop page and adding items to the cart!</p>
+      </Alert>
     } else {
-      history.push('/shipping');
+      history.push("/shipping");
     }
   }
 
-  useEffect(() => {
-    console.log("On re-render -> ", productCart);
-  }, []);
+  // useEffect(() => {
+  //   console.log("On re-render -> ", productCart);
+  // }, []);
 
   return (
     <div className="container text-sm-center text-md-start">
@@ -73,7 +82,7 @@ const Cart = ({ cart }) => {
 
           <div className="" style={{ borderTop: '1px solid #60606030' }}>
             <div className="row-cols-4 my-3">
-              <button type="button" className="btn btn-secondary me-2" onClick={() => history.push('/shipping')}>Next</button>
+              <button type="button" className="btn btn-secondary me-2" onClick={() => nextPage()}>Next</button>
               <button type="button" className="btn btn-light" onClick={() => history.push('/shop')}>Cancel</button>
             </div>
           </div>

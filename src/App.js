@@ -2,6 +2,7 @@ import appStyles from './app.module.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { About, Checkout, Footer, Help, Home, Nav, Product, Shop } from "./components";
 import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   // create a state for an empty array that will be our cart
