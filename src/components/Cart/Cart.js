@@ -17,15 +17,15 @@ const Cart = ({ cart }) => {
   const taxes = (subTotal * 7.5) / 100;
   const netTotal = (subTotal + taxes).toFixed(2);
 
-  const handleQuantityCalc = (e, index) => {
-    setProductQuantity(e.target.value);
-    const item = productCart[index]; // Find the object with the desired index
-    item.product_quantity = productQuantity; //setting the object key value to the input
+  // const handleQuantityCalc = (e, index) => {
+  //   setProductQuantity(e.target.value);
+  //   const item = productCart[index]; // Find the object with the desired index
+  //   item.product_quantity = productQuantity; //setting the object key value to the input
 
-    // Now the goal is to replace this updated item with a new product_quantity with the old item in the productCart
-    setProductCart([...productCart, productCart.splice(index, 0, item)]);
-    // console.log(productCart);
-  }
+  //   // Now the goal is to replace this updated item with a new product_quantity with the old item in the productCart
+  //   setProductCart([...productCart, productCart.splice(index, 0, item)]);
+  //   // console.log(productCart);
+  // }
 
   const nextPage = () => {
     if (!productCart.length){
@@ -56,7 +56,7 @@ const Cart = ({ cart }) => {
           <div className="my-5 p-0">
             {
               productCart.map((item, key) => (
-                Object.keys(item).length > 0 ? (<div key={key} className="row g-1 mb-3">
+                <div key={key} className="row g-1 mb-3">
                   <div className="col-sm col-md-3">
                     <img src={item?.img_main} alt="product_img" className="img-fluid" style={{ maxHeight: '110px', maxWidth: '150px' }} />
                   </div>
@@ -69,13 +69,13 @@ const Cart = ({ cart }) => {
                     </div>
                   </div>
                   <div className="col-sm col-md-3">
-                    <input type="number"
+                    {/* <input type="number"
                       className="form-control"
                       value={item?.product_quantity}
                       onChange={(e) => handleQuantityCalc(e, key)}
-                    />
+                    /> */}
                   </div>
-                </div>) : ""
+                </div>
               ))
             }
           </div>
