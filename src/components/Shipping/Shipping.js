@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import shippingStyles from './shipping.module.css';
 
 const Shipping = ({ cart }) => {
+  const history = useHistory();
   // subtotal, taxes and net total calculation
   const subTotal = cart.map((item) => item.price).reduce((acc, next) => acc + next, 0);
   const taxes = (subTotal * 7.5) / 100;
@@ -19,7 +21,7 @@ const Shipping = ({ cart }) => {
 
   // function to handleValidation
   const handleValidation = () => {
-    
+    history.push("/payment");
   }
 
   return (
@@ -157,7 +159,7 @@ const Shipping = ({ cart }) => {
           {/* Buttons section */}
           <div className="mt-3 justify-content-start" style={{ borderTop: '1px solid #60606030' }}>
             <div className="row-cols-4 my-3">
-              <button className="btn btn-secondary me-2">Next</button>
+              <button type="submit" className="btn btn-secondary me-2" onClick={() => history.push("/payment")}>Next</button>
               <button className="btn btn-light">Cancel</button>
             </div>
           </div>
