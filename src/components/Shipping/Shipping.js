@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import shippingStyles from './shipping.module.css';
 
 const Shipping = ({ cart }) => {
@@ -5,6 +6,21 @@ const Shipping = ({ cart }) => {
   const subTotal = cart.map((item) => item.price).reduce((acc, next) => acc + next, 0);
   const taxes = (subTotal * 7.5) / 100;
   const netTotal = (subTotal + taxes).toFixed(2);
+
+  // State Mgt
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [addressOne, setAddressOne] = useState("");
+  const [addressTwo, setAddressTwo] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  // function to handleValidation
+  const handleValidation = () => {
+    
+  }
 
   return (
     <div className="container text-sm-center text-md-start">
@@ -16,20 +32,28 @@ const Shipping = ({ cart }) => {
           </div>
 
           {/* Form section */}
-          <div className="my-5" style={{ borderBottom: '1px solid #60606030' }}>
+          <form className="my-5 needs-validation" noValidate style={{ borderBottom: '1px solid #60606030' }}>
 
             <div className="row g-3">
               <div className="col-sm col-md-5">
                 <input type="text"
                   className="form-control"
                   placeholder="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
                 />
+                <div className="invalid-feedback">Please, enter first name</div>
               </div>
               <div className="col-sm col-md-5">
                 <input type="text"
                   className="form-control"
                   placeholder="Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
                 />
+                <div className="invalid-feedback">Please, enter last name</div>
               </div>
             </div>
 
@@ -37,27 +61,45 @@ const Shipping = ({ cart }) => {
               <input type="text"
                 className="form-control"
                 placeholder="Address"
+                value={addressOne}
+                onChange={(e) => setAddressOne(e.target.value)}
+                required
               />
+              <div className="invalid-feedback">Please, enter Address 1</div>
             </div>
 
             <div className="mt-3" style={{ maxWidth: '48rem' }}>
               <input type="text"
                 className="form-control"
                 placeholder="Address 2"
+                value={addressTwo}
+                onChange={(e) => setAddressTwo(e.target.value)}
+                required
               />
+              <div className="invalid-feedback">Please, enter Address 2</div>
             </div>
 
             <div className="row g-3 mt-3">
               <div className="col-sm col-md-5">
-                <select className="form-select text-muted">
+                <select
+                  className="form-select text-muted"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  required>
                   <option>Country</option>
+                  <option value="Ghana">Ghana</option>
                 </select>
+                <div className="invalid-feedback">Please, select a country</div>
               </div>
               <div className="col-sm col-md-5">
                 <input type="text"
                   className="form-control"
                   placeholder="City"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  required
                 />
+                <div className="invalid-feedback">Please, enter a city</div>
               </div>
             </div>
 
@@ -66,17 +108,25 @@ const Shipping = ({ cart }) => {
                 <input type="text"
                   className="form-control"
                   placeholder="Zip/Postal Code"
+                  value={postalCode}
+                  onChange={(e) => setPostalCode(e.target.value)}
+                  required
                 />
+                <div className="invalid-feedback">Please, enter a zip/postal code</div>
               </div>
               <div className="col-sm col-md-5">
                 <input type="text"
                   className="form-control"
                   placeholder="Phone Number"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  required
                 />
+                <div className="invalid-feedback">Please, enter a phone number</div>
               </div>
             </div>
 
-          </div>
+          </form>
 
           {/* Shipping options section */}
           <div className="row g-3">
