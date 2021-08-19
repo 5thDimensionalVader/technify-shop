@@ -19,9 +19,27 @@ const Shipping = ({ cart }) => {
   const [postalCode, setPostalCode] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
+  const error = {
+    addressOne: "Please, enter the address",
+    addressTwo: "Please, enter the second address",
+    postalCode: "Please, enter the postal code",
+    phoneNumber: "Please, enter a phone number"
+  }
+
+
   // function to handleValidation
   const handleValidation = () => {
-    history.push("/payment");
+    if (addressOne.trim() === '') {
+      return error.addressOne;
+    } else if (addressTwo.trim() === '') {
+      return error.addressTwo;
+    } else if (postalCode.trim() === '') {
+      return error.postalCode;
+    } else if (phoneNumber.trim() === '') {
+      return error.phoneNumber;
+    } else {
+      history.push("/payment");
+    }
   }
 
   return (
@@ -34,7 +52,7 @@ const Shipping = ({ cart }) => {
           </div>
 
           {/* Form section */}
-          <form className="my-5 needs-validation" noValidate style={{ borderBottom: '1px solid #60606030' }}>
+          <form className="my-5 needs-validation" noValidate style={{ borderBottom: '1px solid #60606030' }} autoComplete="false">
 
             <div className="row g-3">
               <div className="col-sm col-md-5">
@@ -43,9 +61,8 @@ const Shipping = ({ cart }) => {
                   placeholder="First Name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  required
                 />
-                <div className="invalid-feedback">Please, enter first name</div>
+
               </div>
               <div className="col-sm col-md-5">
                 <input type="text"
@@ -53,9 +70,8 @@ const Shipping = ({ cart }) => {
                   placeholder="Last Name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  required
                 />
-                <div className="invalid-feedback">Please, enter last name</div>
+
               </div>
             </div>
 
@@ -67,7 +83,7 @@ const Shipping = ({ cart }) => {
                 onChange={(e) => setAddressOne(e.target.value)}
                 required
               />
-              <div className="invalid-feedback">Please, enter Address 1</div>
+              <div className="invalid-feedback">{error.addressOne}</div>
             </div>
 
             <div className="mt-3" style={{ maxWidth: '48rem' }}>
@@ -78,7 +94,7 @@ const Shipping = ({ cart }) => {
                 onChange={(e) => setAddressTwo(e.target.value)}
                 required
               />
-              <div className="invalid-feedback">Please, enter Address 2</div>
+              <div className="invalid-feedback">{error.addressTwo}</div>
             </div>
 
             <div className="row g-3 mt-3">
@@ -87,11 +103,11 @@ const Shipping = ({ cart }) => {
                   className="form-select text-muted"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  required>
+                >
                   <option>Country</option>
                   <option value="Ghana">Ghana</option>
                 </select>
-                <div className="invalid-feedback">Please, select a country</div>
+
               </div>
               <div className="col-sm col-md-5">
                 <input type="text"
@@ -99,9 +115,9 @@ const Shipping = ({ cart }) => {
                   placeholder="City"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  required
+
                 />
-                <div className="invalid-feedback">Please, enter a city</div>
+
               </div>
             </div>
 
@@ -114,7 +130,7 @@ const Shipping = ({ cart }) => {
                   onChange={(e) => setPostalCode(e.target.value)}
                   required
                 />
-                <div className="invalid-feedback">Please, enter a zip/postal code</div>
+                <div className="invalid-feedback">{error.postalCode}</div>
               </div>
               <div className="col-sm col-md-5">
                 <input type="text"
@@ -124,45 +140,27 @@ const Shipping = ({ cart }) => {
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   required
                 />
-                <div className="invalid-feedback">Please, enter a phone number</div>
+                <div className="invalid-feedback">{error.phoneNumber}</div>
+              </div>
+            </div>
+            <div className="form-check form-check-inline">
+              <input type="radio" className="form-check-input"/>
+              <label className="form-check-label"> Free Shipping (2-5 working days) </label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input type="radio" className="form-check-input"/>
+              <label className="form-check-label"> Next Day Delivery - $20 </label>
+            </div>
+            {/* Buttons section */}
+            <div className="mt-3 justify-content-start" style={{ borderTop: '1px solid #60606030' }}>
+              <div className="row-cols-4 my-3">
+                <button type="submit" className="btn btn-secondary me-2">Next</button>
+                <button className="btn btn-light">Cancel</button>
               </div>
             </div>
 
           </form>
-
-          {/* Shipping options section */}
-          <div className="row g-3">
-            <div className="col-sm col-md-4">
-              <div className="container border border-1 border-secondary py-2">
-                <div className="form-check text-start pe-3">
-                  <input type="radio" className="form-check-input" />
-                  <label className="form-check-label">
-                    <h6 className="fs-5">Free Shipping</h6>
-                    <p className="text-muted">Between 2-5 working days</p>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm col-md-4">
-              <div className="container border border-1 border-secondary py-2">
-                <div className="form-check text-start pe-3">
-                  <input type="radio" className="form-check-input" />
-                  <label className="form-check-label">
-                    <h6 className="fs-5">Next Day Delivery - $20</h6>
-                    <p className="text-muted">24 hours from checkout</p>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Buttons section */}
-          <div className="mt-3 justify-content-start" style={{ borderTop: '1px solid #60606030' }}>
-            <div className="row-cols-4 my-3">
-              <button type="submit" className="btn btn-secondary me-2" onClick={() => history.push("/payment")}>Next</button>
-              <button className="btn btn-light">Cancel</button>
-            </div>
-          </div>
+          
         </div>
         {/* Summary */}
         <div className="col-sm col-md-3">
