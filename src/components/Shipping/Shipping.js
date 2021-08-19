@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import shippingStyles from './shipping.module.css';
 
 const Shipping = ({ cart }) => {
@@ -10,37 +12,38 @@ const Shipping = ({ cart }) => {
   const netTotal = (subTotal + taxes).toFixed(2);
 
   // State Mgt
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [addressOne, setAddressOne] = useState("");
-  const [addressTwo, setAddressTwo] = useState("");
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
+  //formik hook set up
+  const formik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      addressOne: '',
+      addressTwo: '',
+      postalCode: '',
+      phoneNumber: '',
+    },
+    validationSchema: Yup.object({
+      firstName: Yup.string("First Name")
+        .required('Please, enter first name'),
+      lastName: Yup.string()
+        .required('Please, enter last name'),
+      addressOne: Yup.string()
+        .required('Please, enter the first address'),
+      addressTwo: Yup.string()
+        .required('Please, enter the second address'),
+      postalCode: Yup.string()
+        .required('Please, enter the postal code'),
+      phoneNumber: Yup.string()
+        .required('Please, enter the phone number'),
+    }),
+    onSubmit: values => {
+      // alert(JSON.stringify(values, null, 2));
+      history.push('/payment')
+    },
+  });
 
-  const error = {
-    addressOne: "Please, enter the address",
-    addressTwo: "Please, enter the second address",
-    postalCode: "Please, enter the postal code",
-    phoneNumber: "Please, enter a phone number"
-  }
-
-
-  // function to handleValidation
-  const handleValidation = () => {
-    if (addressOne.trim() === '') {
-      return error.addressOne;
-    } else if (addressTwo.trim() === '') {
-      return error.addressTwo;
-    } else if (postalCode.trim() === '') {
-      return error.postalCode;
-    } else if (phoneNumber.trim() === '') {
-      return error.phoneNumber;
-    } else {
-      history.push("/payment");
-    }
-  }
 
   return (
     <div className="container text-sm-center text-md-start">
@@ -52,49 +55,55 @@ const Shipping = ({ cart }) => {
           </div>
 
           {/* Form section */}
-          <form className="my-5 needs-validation" noValidate style={{ borderBottom: '1px solid #60606030' }} autoComplete="false">
+          <form className="my-5 needs-validation" noValidate style={{ borderBottom: '1px solid #60606030' }} autoComplete="false" onSubmit={formik.handleSubmit}>
 
             <div className="row g-3">
               <div className="col-sm col-md-5">
                 <input type="text"
+                  id="firstName"
+                  name="firstName"
                   className="form-control"
-                  placeholder="First Name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  value={formik.values.firstName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
-
+                {formik.touched.firstName && formik.errors.firstName ? (<div className="invalid-feedback">{formik.errors.firstName}</div>) : null}
               </div>
               <div className="col-sm col-md-5">
                 <input type="text"
+                  id="lastName"
+                  name="lastName"
                   className="form-control"
-                  placeholder="Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={formik.values.lastName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
-
+                {formik.touched.lastName && formik.errors.lastName ? (<div className="invalid-feedback">{formik.errors.lastName}</div>) : null}
               </div>
             </div>
 
             <div className="mt-3" style={{ maxWidth: '48rem' }}>
               <input type="text"
+                id="addressOne"
+                name="addressOne"
                 className="form-control"
-                placeholder="Address"
-                value={addressOne}
-                onChange={(e) => setAddressOne(e.target.value)}
-                required
+                value={formik.values.addressOne}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
-              <div className="invalid-feedback">{error.addressOne}</div>
+              {formik.touched.addressOne && formik.errors.addressOne ? (<div className="invalid-feedback">{formik.errors.addressOne}</div>) : null}
             </div>
 
             <div className="mt-3" style={{ maxWidth: '48rem' }}>
               <input type="text"
+                id="addressTwo"
+                name="addressTwo"
                 className="form-control"
-                placeholder="Address 2"
-                value={addressTwo}
-                onChange={(e) => setAddressTwo(e.target.value)}
-                required
+                value={formik.values.addressTwo}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
-              <div className="invalid-feedback">{error.addressTwo}</div>
+              {formik.touched.addressTwo && formik.errors.addressTwo ? (<div className="invalid-feedback">{formik.errors.addressTwo}</div>) : null}
             </div>
 
             <div className="row g-3 mt-3">
@@ -124,43 +133,46 @@ const Shipping = ({ cart }) => {
             <div className="row g-3 mt-3 mb-4">
               <div className="col-sm col-md-5">
                 <input type="text"
+                  id="postalCode"
+                  name="postalCode"
                   className="form-control"
-                  placeholder="Zip/Postal Code"
-                  value={postalCode}
-                  onChange={(e) => setPostalCode(e.target.value)}
-                  required
+                  value={formik.values.postalCode}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
-                <div className="invalid-feedback">{error.postalCode}</div>
+                {formik.touched.postalCode && formik.errors.postalCode ? (<div className="invalid-feedback">{formik.errors.postalCode}</div>) : null}
               </div>
               <div className="col-sm col-md-5">
                 <input type="text"
+                  id="phoneNumber"
+                  name="phoneNumber"
                   className="form-control"
-                  placeholder="Phone Number"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  required
+                  value={formik.values.phoneNumber}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
-                <div className="invalid-feedback">{error.phoneNumber}</div>
+                {formik.touched.phoneNumber && formik.errors.phoneNumber ? (<div className="invalid-feedback">{formik.errors.phoneNumber}</div>) : null}
               </div>
             </div>
+            {/* Shipping options section */}
             <div className="form-check form-check-inline">
-              <input type="radio" className="form-check-input"/>
+              <input type="radio" className="form-check-input" />
               <label className="form-check-label"> Free Shipping (2-5 working days) </label>
             </div>
             <div className="form-check form-check-inline">
-              <input type="radio" className="form-check-input"/>
+              <input type="radio" className="form-check-input" />
               <label className="form-check-label"> Next Day Delivery - $20 </label>
             </div>
             {/* Buttons section */}
             <div className="mt-3 justify-content-start" style={{ borderTop: '1px solid #60606030' }}>
               <div className="row-cols-4 my-3">
                 <button type="submit" className="btn btn-secondary me-2">Next</button>
-                <button className="btn btn-light">Cancel</button>
+                <button type="button" className="btn btn-light">Cancel</button>
               </div>
             </div>
 
           </form>
-          
+
         </div>
         {/* Summary */}
         <div className="col-sm col-md-3">
