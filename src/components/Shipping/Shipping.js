@@ -25,7 +25,7 @@ const Shipping = ({ cart }) => {
       phoneNumber: '',
     },
     validationSchema: Yup.object({
-      firstName: Yup.string("First Name")
+      firstName: Yup.string()
         .required('Please, enter first name'),
       lastName: Yup.string()
         .required('Please, enter last name'),
@@ -39,7 +39,6 @@ const Shipping = ({ cart }) => {
         .required('Please, enter the phone number'),
     }),
     onSubmit: values => {
-      // alert(JSON.stringify(values, null, 2));
       history.push('/payment')
     },
   });
@@ -62,6 +61,7 @@ const Shipping = ({ cart }) => {
                 <input type="text"
                   id="firstName"
                   name="firstName"
+                  placeholder="First Name"
                   className="form-control"
                   value={formik.values.firstName}
                   onChange={formik.handleChange}
@@ -73,6 +73,7 @@ const Shipping = ({ cart }) => {
                 <input type="text"
                   id="lastName"
                   name="lastName"
+                  placeholder="Last Name"
                   className="form-control"
                   value={formik.values.lastName}
                   onChange={formik.handleChange}
@@ -86,6 +87,7 @@ const Shipping = ({ cart }) => {
               <input type="text"
                 id="addressOne"
                 name="addressOne"
+                placeholder="Address"
                 className="form-control"
                 value={formik.values.addressOne}
                 onChange={formik.handleChange}
@@ -98,6 +100,7 @@ const Shipping = ({ cart }) => {
               <input type="text"
                 id="addressTwo"
                 name="addressTwo"
+                placeholder="Address 2"
                 className="form-control"
                 value={formik.values.addressTwo}
                 onChange={formik.handleChange}
@@ -135,6 +138,7 @@ const Shipping = ({ cart }) => {
                 <input type="text"
                   id="postalCode"
                   name="postalCode"
+                  placeholder="Postal Code"
                   className="form-control"
                   value={formik.values.postalCode}
                   onChange={formik.handleChange}
@@ -146,6 +150,7 @@ const Shipping = ({ cart }) => {
                 <input type="text"
                   id="phoneNumber"
                   name="phoneNumber"
+                  placeholder="Phone Number"
                   className="form-control"
                   value={formik.values.phoneNumber}
                   onChange={formik.handleChange}
