@@ -13,6 +13,7 @@ const Payment = ({ cart, setCart }) => {
   const [cvv, setCVV] = useState('');
   const [holderName, setHolderName] = useState('');
   const [show, setShow] = useState(false);
+  const [paymentOption, setPaymentOption] = useState('');
   // history 
   const history = useHistory();
   const location = useLocation();
@@ -40,32 +41,33 @@ const Payment = ({ cart, setCart }) => {
 
   // function for the Pay now button
   const handlePayment = () => {
-    const validation = CreditCard.validate(card);
-    if (!validation.validCardNumber && !validation.validExpiryMonth && !validation.validExpiryYear && !validation.validCvv) {
-      setShow(true);
-      <Alert show={show} variant="warning" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Oh Snap! Your credit card information is not valid!</Alert.Heading>
-        <p>Try going back to the fields and input the correct credit card information!</p>
-      </Alert>
-    } else if (!validation.validCardNumber) {
-      return
-    } else if (!validation.validExpiryMonth) {
-      return
-    } else if (!validation.validExpiryYear) {
-      return
-    } else if (!validation.validCvv) {
-      return
-    } else {
-      alert(`Payment was successful, ${holderName}. You will receive an email soon.\nThank you for shopping with us!`);
-      setCart([]);
-      history.push('/');
+    if (paymentOption === 'creditCard') {
+      const validation = CreditCard.validate(card);
+      if (!validation.validCardNumber && !validation.validExpiryMonth && !validation.validExpiryYear && !validation.validCvv) {
+        setShow(true);
+        <Alert show={show} variant="warning" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Oh Snap! Your credit card information is not valid!</Alert.Heading>
+          <p>Try going back to the fields and input the correct credit card information!</p>
+        </Alert>
+      } else if (!validation.validCardNumber) {
+        return
+      } else if (!validation.validExpiryMonth) {
+        return
+      } else if (!validation.validExpiryYear) {
+        return
+      } else if (!validation.validCvv) {
+        return
+      } else {
+        alert(`Payment was successful, ${holderName}. You will receive an email soon.\nThank you for shopping with us!`);
+        setCart([]);
+        history.push('/');
+      }
+    } else if(paymentOption === 'paypal') {
+        alert(`Please, confirm the Paypal transaction prompt to complete the order.\nThank you for shopping with us!`);
+        setCart([]);
+        history.push('/');
     }
   }
-
-
-
-
-
 
   return (
     <div className="container text-sm-center text-md-start">
@@ -81,7 +83,12 @@ const Payment = ({ cart, setCart }) => {
 
             <div className="border border-1 border-secondary p-3 my-4">
               <div className="form-check ps-3">
-                <input type="radio" className="form-check-input" />
+                <input type="radio"
+                  className="form-check-input"
+                  name="paymentOption"
+                  value="creditCard"
+                  onChange={(e) => setPaymentOption(e.target.value)}
+                />
                 <label className="form-check-label">
                   <h6 className="fs-5">Credit Card</h6>
                   <p className="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, odit!</p>
@@ -140,7 +147,12 @@ const Payment = ({ cart, setCart }) => {
           <div className="">
             <div className="border border-1 border-secondary p-3">
               <div className="form-check ps-3">
-                <input type="radio" className="form-check-input" />
+                <input type="radio"
+                  className="form-check-input"
+                  name="paymentOption"
+                  value="paypal"
+                  onChange={(e) => setPaymentOption(e.target.value)}
+                />
                 <label className="form-check-label">
                   <h6 className="fs-5">Paypal</h6>
                   <div className="row align-self-center">
