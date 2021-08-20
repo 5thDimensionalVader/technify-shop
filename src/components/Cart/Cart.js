@@ -17,33 +17,18 @@ const Cart = ({ cart }) => {
   const taxes = (subTotal * 7.5) / 100;
   const netTotal = (subTotal + taxes).toFixed(2);
 
-  // const handleQuantityCalc = (e, index) => {
-  //   setProductQuantity(e.target.value);
-  //   const item = productCart[index]; // Find the object with the desired index
-  //   item.product_quantity = productQuantity; //setting the object key value to the input
-
-  //   // Now the goal is to replace this updated item with a new product_quantity with the old item in the productCart
-  //   setProductCart([...productCart, productCart.splice(index, 0, item)]);
-  //   // console.log(productCart);
-  // }
-
   const nextPage = () => {
     if (!productCart.length) {
       setShow(true);
-      if (show) {
-        <Alert variant="warning" onClose={() => setShow(false)} dismissible>
-          <Alert.Heading>Oh Snap! There's nothing in your cart</Alert.Heading>
-          <p>Try going back to the shop page and adding items to the cart!</p>
-        </Alert>
-      }
+      <Alert show={show} variant="warning" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Oh Snap! There's nothing in your cart</Alert.Heading>
+        <p>Try going back to the shop page and adding items to the cart!</p>
+      </Alert>
+
     } else {
       history.push("/shipping");
     }
   }
-
-  // useEffect(() => {
-  //   console.log("On re-render -> ", productCart);
-  // }, []);
 
   return (
     <div className="container text-sm-center text-md-start">
@@ -70,13 +55,6 @@ const Cart = ({ cart }) => {
                       <h4 className="fs-6 fw-lighter">{`${item?.currency}${item?.price}`}</h4>
                     </div>
                   </div>
-                  <div className="col-sm col-md-3">
-                    {/* <input type="number"
-                      className="form-control"
-                      value={item?.product_quantity}
-                      onChange={(e) => handleQuantityCalc(e, key)}
-                    /> */}
-                  </div>
                 </div>
               ))
             }
@@ -86,9 +64,9 @@ const Cart = ({ cart }) => {
             <div className="row-cols-4 my-3">
               <button type="button" className="btn btn-secondary me-2" onClick={() => nextPage()}>Next</button>
               <button type="button" className="btn btn-light" onClick={() => {
-                  cart.length = 0;
-                  history.push('/shop');
-                }}>Cancel</button>
+                cart.length = 0;
+                history.push('/shop');
+              }}>Cancel</button>
             </div>
           </div>
         </div>
