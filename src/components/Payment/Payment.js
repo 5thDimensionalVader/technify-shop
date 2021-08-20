@@ -3,15 +3,9 @@ import { BsCreditCard, BsInfoCircle } from 'react-icons/bs';
 import { ImPaypal } from 'react-icons/im';
 import { useState } from 'react';
 import { Alert } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
-const Payment = ({ cart }) => {
-  // subtotal, taxes and net total calculation
-  const subTotal = cart.map((item) => item.price).reduce((acc, next) => acc + next, 0);
-  const taxes = (subTotal * 7.5) / 100;
-  const netTotal = (subTotal + taxes).toFixed(2);
-  // history 
-  const history = useHistory();
+const Payment = ({ cart, setCart }) => {
 
   // State Mgt
   const [number, setNumber] = useState('');
@@ -19,6 +13,17 @@ const Payment = ({ cart }) => {
   const [cvv, setCVV] = useState('');
   const [holderName, setHolderName] = useState('');
   const [show, setShow] = useState(false);
+  // history 
+  const history = useHistory();
+  const location = useLocation();
+
+  // subtotal, taxes and net total calculation
+  const subTotal = location.state?.subTotal;
+  const taxes = location.state?.taxes;
+  const netTotal = location.state?.netTotal;
+
+
+
 
   // expiryMonth & expiryYear 
   const expiryMonth = `${expiry[0]}${expiry[1]}`;
@@ -36,25 +41,23 @@ const Payment = ({ cart }) => {
   // function for the Pay now button
   const handlePayment = () => {
     const validation = CreditCard.validate(card);
-    if (validation.validCardNumber === false && validation.validExpiryMonth === false && validation.validExpiryYear === false && validation.validCvv === false) {
+    if (!validation.validCardNumber && !validation.validExpiryMonth && !validation.validExpiryYear && !validation.validCvv) {
       setShow(true);
-      if (show) {
-        <Alert variant="warning" onClose={() => setShow(false)} dismissible>
-          <Alert.Heading>Oh Snap! Your credit card information is not valid!</Alert.Heading>
-          <p>Try going back to the fields and input the correct credit card information!</p>
-        </Alert>
-      }
-    } else if (validation.validCardNumber === false) {
+      <Alert show={show} variant="warning" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Oh Snap! Your credit card information is not valid!</Alert.Heading>
+        <p>Try going back to the fields and input the correct credit card information!</p>
+      </Alert>
+    } else if (!validation.validCardNumber) {
       return
-    } else if (validation.validExpiryMonth === false) {
+    } else if (!validation.validExpiryMonth) {
       return
-    } else if (validation.validExpiryYear === false) {
+    } else if (!validation.validExpiryYear) {
       return
-    } else if (validation.validCvv === false) {
+    } else if (!validation.validCvv) {
       return
     } else {
       alert(`Payment was successful, ${holderName}. You will receive an email soon.\nThank you for shopping with us!`);
-      cart.length = 0;
+      setCart([]);
       history.push('/');
     }
   }
@@ -157,9 +160,9 @@ const Payment = ({ cart }) => {
             <div className="row-cols-4 my-3">
               <button type="button" className="btn btn-secondary me-2" onClick={() => handlePayment()}>Pay Now</button>
               <button type="button" className="btn btn-light" onClick={() => {
-                  cart.length = 0;
-                  history.push('/shop');
-                }}>Cancel</button>
+                setCart([]);
+                history.push('/shop');
+              }}>Cancel</button>
             </div>
           </div>
         </div>
@@ -201,9 +204,9 @@ const Payment = ({ cart }) => {
               <h4 className="fw-light fs-6 mb-3">TAXES</h4>
             </div>
             <div className="col-sm col-md text-sm-center text-md-end">
-              <h4 className="fw-light fs-6 mb-3">{subTotal}</h4>
-              <h4 className="fw-light fs-6 mb-3">FREE</h4>
-              <h4 className="fw-light fs-6 mb-3">{taxes}</h4>
+              <h4 className="fw-light fs-6 mb-3">{`$${subTotal}`}</h4>
+              <h4 className="fw-light fs-6 mb-3">{`$${location.state?.shippingOption}`}</h4>
+              <h4 className="fw-light fs-6 mb-3">{`$${taxes}`}</h4>
             </div>
           </div>
           <div className="row py-3" style={{ borderTop: '1px solid #60606030' }}>
@@ -211,7 +214,7 @@ const Payment = ({ cart }) => {
               <h4 className="fw-light fs-4 mb-3">TOTAL</h4>
             </div>
             <div className="col-sm col-md text-sm-center text-md-end">
-              <h4 className="fw-bold fs-4 mb-3">{netTotal}</h4>
+              <h4 className="fw-bold fs-4 mb-3">{`$${netTotal}`}</h4>
             </div>
           </div>
         </div>

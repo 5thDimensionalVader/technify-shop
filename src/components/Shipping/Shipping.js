@@ -4,16 +4,19 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import shippingStyles from './shipping.module.css';
 
-const Shipping = ({ cart }) => {
+const Shipping = ({ cart, setCart }) => {
   const history = useHistory();
-  // subtotal, taxes and net total calculation
-  const subTotal = cart.map((item) => item.price).reduce((acc, next) => acc + next, 0);
-  const taxes = (subTotal * 7.5) / 100;
-  const netTotal = (subTotal + taxes).toFixed(2);
-
   // State Mgt
   const [country, setCountry] = useState('');
   const [city, setCity] = useState('');
+  const [shippingOption, setShippingOption] = useState("");
+
+
+  // subtotal, taxes and net total calculation
+  const subTotal = cart.map((item) => item.price).reduce((acc, next) => acc + next, 0);
+  const taxes = (subTotal * 7.5) / 100;
+  const netTotal = shippingOption === "20" ? (subTotal + taxes + 20).toFixed(2) :(subTotal + taxes).toFixed(2);
+
   //formik hook set up
   const formik = useFormik({
     initialValues: {
@@ -39,7 +42,7 @@ const Shipping = ({ cart }) => {
         .required('Please, enter the phone number'),
     }),
     onSubmit: values => {
-      history.push('/payment')
+      history.push('/payment', {netTotal: netTotal, subTotal: subTotal, taxes: taxes, shippingOption: shippingOption});
     },
   });
 
@@ -161,11 +164,21 @@ const Shipping = ({ cart }) => {
             </div>
             {/* Shipping options section */}
             <div className="form-check form-check-inline">
-              <input type="radio" className="form-check-input" />
+              <input type="radio"
+                className="form-check-input"
+                name="shippingOption"
+                value="FREE"
+                onChange={(e) => setShippingOption(e.target.value)}
+              />
               <label className="form-check-label"> Free Shipping (2-5 working days) </label>
             </div>
             <div className="form-check form-check-inline">
-              <input type="radio" className="form-check-input" />
+              <input type="radio"
+                className="form-check-input"
+                name="shippingOption"
+                value="20"
+                onChange={(e) => setShippingOption(e.target.value)}
+              />
               <label className="form-check-label"> Next Day Delivery - $20 </label>
             </div>
             {/* Buttons section */}
@@ -173,7 +186,7 @@ const Shipping = ({ cart }) => {
               <div className="row-cols-4 my-3">
                 <button type="submit" className="btn btn-secondary me-2">Next</button>
                 <button type="button" className="btn btn-light" onClick={() => {
-                  cart.length = 0;
+                  setCart([]);
                   history.push('/shop');
                 }}>Cancel</button>
               </div>
@@ -219,9 +232,9 @@ const Shipping = ({ cart }) => {
               <h4 className="fw-light fs-6 mb-3">TAXES</h4>
             </div>
             <div className="col-sm col-md text-sm-center text-md-end">
-              <h4 className="fw-light fs-6 mb-3">{subTotal}</h4>
-              <h4 className="fw-light fs-6 mb-3">FREE</h4>
-              <h4 className="fw-light fs-6 mb-3">{taxes}</h4>
+              <h4 className="fw-light fs-6 mb-3">{`$${subTotal}`}</h4>
+              <h4 className="fw-light fs-6 mb-3">{shippingOption === "FREE" ? shippingOption : `$${shippingOption}`}</h4>
+              <h4 className="fw-light fs-6 mb-3">{`$${taxes}`}</h4>
             </div>
           </div>
           <div className="row py-3" style={{ borderTop: '1px solid #60606030' }}>
@@ -229,7 +242,7 @@ const Shipping = ({ cart }) => {
               <h4 className="fw-light fs-4 mb-3">TOTAL</h4>
             </div>
             <div className="col-sm col-md text-sm-center text-md-end">
-              <h4 className="fw-bold fs-4 mb-3">{netTotal}</h4>
+              <h4 className="fw-bold fs-4 mb-3">{`$${netTotal}`}</h4>
             </div>
           </div>
         </div>

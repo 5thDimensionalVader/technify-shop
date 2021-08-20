@@ -3,22 +3,21 @@ import { useHistory } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import cartStyles from './cart.module.css';
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, setCart }) => {
   const history = useHistory();
 
   // State Mgt
   const [productQuantity, setProductQuantity] = useState(1);
-  const [productCart, setProductCart] = useState(cart);
   const [show, setShow] = useState(false); /* for the Alert component from React Bootstrap */
 
 
   // subtotal, taxes and net total calculation
-  const subTotal = productCart.map((item) => item.price).reduce((acc, next) => acc + next, 0);
+  const subTotal = cart.map((item) => item.price).reduce((acc, next) => acc + next, 0);
   const taxes = (subTotal * 7.5) / 100;
   const netTotal = (subTotal + taxes).toFixed(2);
 
   const nextPage = () => {
-    if (!productCart.length) {
+    if (!cart.length) {
       setShow(true);
       <Alert show={show} variant="warning" onClose={() => setShow(false)} dismissible>
         <Alert.Heading>Oh Snap! There's nothing in your cart</Alert.Heading>
@@ -42,7 +41,7 @@ const Cart = ({ cart }) => {
 
           <div className="my-5 p-0">
             {
-              productCart.map((item, key) => (
+              cart.map((item, key) => (
                 <div key={key} className="row g-1 mb-3">
                   <div className="col-sm col-md-3">
                     <img src={item?.img_main} alt="product_img" className="img-fluid" style={{ maxHeight: '110px', maxWidth: '150px' }} />
@@ -64,7 +63,7 @@ const Cart = ({ cart }) => {
             <div className="row-cols-4 my-3">
               <button type="button" className="btn btn-secondary me-2" onClick={() => nextPage()}>Next</button>
               <button type="button" className="btn btn-light" onClick={() => {
-                cart.length = 0;
+                setCart([]);
                 history.push('/shop');
               }}>Cancel</button>
             </div>
@@ -88,9 +87,9 @@ const Cart = ({ cart }) => {
               <h4 className="fw-light fs-5 mb-3">TAXES</h4>
             </div>
             <div className="col-sm col-md text-sm-center text-md-end">
-              <h4 className="fw-light fs-5 mb-3">{subTotal}</h4>
-              <h4 className="fw-light fs-5 mb-3">FREE</h4>
-              <h4 className="fw-light fs-5 mb-3">{taxes.toFixed(2)}</h4>
+              <h4 className="fw-light fs-5 mb-3">{`$${subTotal}`}</h4>
+              <h4 className="fw-light fs-5 mb-3">---</h4>
+              <h4 className="fw-light fs-5 mb-3">{`$${taxes}`}</h4>
             </div>
           </div>
           <div className="row py-3" style={{ borderTop: '1px solid #60606030' }}>
@@ -98,7 +97,7 @@ const Cart = ({ cart }) => {
               <h4 className="fw-light fs-4 mb-3">TOTAL</h4>
             </div>
             <div className="col-sm col-md text-sm-center text-md-end">
-              <h4 className="fw-bold fs-4 mb-3">{netTotal}</h4>
+              <h4 className="fw-bold fs-4 mb-3">{`$${netTotal}`}</h4>
             </div>
           </div>
         </div>
