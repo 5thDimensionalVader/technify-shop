@@ -85,7 +85,10 @@ const Cart = ({ cart }) => {
           <div className="" style={{ borderTop: '1px solid #60606030' }}>
             <div className="row-cols-4 my-3">
               <button type="button" className="btn btn-secondary me-2" onClick={() => nextPage()}>Next</button>
-              <button type="button" className="btn btn-light" onClick={() => history.push('/shop')}>Cancel</button>
+              <button type="button" className="btn btn-light" onClick={() => {
+                  cart.length = 0;
+                  history.push('/shop');
+                }}>Cancel</button>
             </div>
           </div>
         </div>
