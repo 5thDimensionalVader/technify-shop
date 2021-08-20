@@ -5,7 +5,7 @@ import cartStyles from './cart.module.css';
 
 const Cart = ({ cart }) => {
   const history = useHistory();
-  
+
   // State Mgt
   const [productQuantity, setProductQuantity] = useState(1);
   const [productCart, setProductCart] = useState(cart);
@@ -28,12 +28,14 @@ const Cart = ({ cart }) => {
   // }
 
   const nextPage = () => {
-    if (!productCart.length){
+    if (!productCart.length) {
       setShow(true);
-      <Alert variant="warning" onClose={()=> setShow(false)} dismissible>
-        <Alert.Heading>Oh Snap! There's nothing in your cart</Alert.Heading>
-        <p>Try going back to the shop page and adding items to the cart!</p>
-      </Alert>
+      if (show) {
+        <Alert variant="warning" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Oh Snap! There's nothing in your cart</Alert.Heading>
+          <p>Try going back to the shop page and adding items to the cart!</p>
+        </Alert>
+      }
     } else {
       history.push("/shipping");
     }

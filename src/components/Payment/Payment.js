@@ -1,12 +1,69 @@
 import paymentStyles from './payment.module.css';
 import { BsCreditCard, BsInfoCircle } from 'react-icons/bs';
 import { ImPaypal } from 'react-icons/im';
+import { useState } from 'react';
+import { Alert } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 const Payment = ({ cart }) => {
   // subtotal, taxes and net total calculation
   const subTotal = cart.map((item) => item.price).reduce((acc, next) => acc + next, 0);
   const taxes = (subTotal * 7.5) / 100;
   const netTotal = (subTotal + taxes).toFixed(2);
+  // history 
+  const history = useHistory();
+
+  // State Mgt
+  const [number, setNumber] = useState('');
+  const [expiry, setExpiry] = useState('');
+  const [cvv, setCVV] = useState('');
+  const [holderName, setHolderName] = useState('');
+  const [show, setShow] = useState(false);
+
+  // expiryMonth & expiryYear 
+  const expiryMonth = `${expiry[0]}${expiry[1]}`;
+  const expiryYear = `${expiry[3]}${expiry[4]}${expiry[5]}${expiry[6]}`;
+
+  // Credit Card validation
+  const CreditCard = require('credit-card');
+  const card = {
+    number: number.trim(),
+    expiryMonth,
+    expiryYear,
+    cvv,
+  }
+
+  // function for the Pay now button
+  const handlePayment = () => {
+    const validation = CreditCard.validate(card);
+    if (validation.validCardNumber === false && validation.validExpiryMonth === false && validation.validExpiryYear === false && validation.validCvv === false) {
+      setShow(true);
+      if (show) {
+        <Alert variant="warning" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Oh Snap! Your credit card information is not valid!</Alert.Heading>
+          <p>Try going back to the fields and input the correct credit card information!</p>
+        </Alert>
+      }
+    } else if (validation.validCardNumber === false) {
+      return
+    } else if (validation.validExpiryMonth === false) {
+      return
+    } else if (validation.validExpiryYear === false) {
+      return
+    } else if (validation.validCvv === false) {
+      return
+    } else {
+      alert(`Payment was successful, ${holderName}. You will receive an email soon.\nThank you for shopping with us!`);
+      cart.length = 0;
+      history.push('/');
+    }
+  }
+
+
+
+
+
+
   return (
     <div className="container text-sm-center text-md-start">
       <div className="row g-5">
@@ -31,24 +88,48 @@ const Payment = ({ cart }) => {
               <div className="row g-3">
                 <div className="col-sm col-md-6">
                   <div className="input-group">
-                    <input type="text" className="form-control" placeholder="0000 0000 0000 0000" />
+                    <input type="text"
+                      className="form-control"
+                      placeholder="0000 0000 0000 0000"
+                      value={number}
+                      onChange={(e) => setNumber(e.target.value)}
+                    />
                     <span className="input-group-text bg-white"><BsCreditCard /></span>
                   </div>
+
                 </div>
                 <div className="col-sm col-md-3">
-                  <input type="text" className="form-control" placeholder="MM/YY" />
+                  <input type="text"
+                    className="form-control"
+                    placeholder="MM/YY"
+                    value={expiry}
+                    onChange={(e) => setExpiry(e.target.value)}
+                  />
+
                 </div>
                 <div className="col-sm col-md-3">
                   <div className="input-group">
-                    <input type="text" className="form-control" placeholder="CVV" />
+                    <input type="text"
+                      className="form-control"
+                      placeholder="CVV"
+                      value={cvv}
+                      onChange={(e) => setCVV(e.target.value)}
+                    />
                     <span className="input-group-text bg-white"><BsInfoCircle /></span>
                   </div>
+
                 </div>
               </div>
 
               <div className="mt-3">
-                <input type="text" className="form-control" placeholder="Card Holder Name" />
+                <input type="text"
+                  className="form-control"
+                  placeholder="Card Holder Name"
+                  value={holderName}
+                  onChange={(e) => setHolderName(e.target.value)}
+                />
               </div>
+
             </div>
 
           </div>
@@ -74,7 +155,7 @@ const Payment = ({ cart }) => {
           {/* Buttons section */}
           <div className="mt-3 justify-content-start" style={{ borderTop: '1px solid #60606030' }}>
             <div className="row-cols-4 my-3">
-              <button className="btn btn-secondary me-2">Pay Now</button>
+              <button type="button" className="btn btn-secondary me-2" onClick={() => handlePayment()}>Pay Now</button>
               <button className="btn btn-light">Cancel</button>
             </div>
           </div>
@@ -118,7 +199,7 @@ const Payment = ({ cart }) => {
             </div>
             <div className="col-sm col-md text-sm-center text-md-end">
               <h4 className="fw-light fs-6 mb-3">{subTotal}</h4>
-              <h4 className="fw-light fs-6 mb-3">SHIPPING</h4>
+              <h4 className="fw-light fs-6 mb-3">FREE</h4>
               <h4 className="fw-light fs-6 mb-3">{taxes}</h4>
             </div>
           </div>
